@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d22gas8sw638x"]
+
+[ext_resource type="PackedScene" uid="uid://da24yl2y8xbyy" path="res://character/actor.tscn" id="1_b35kn"]
+[ext_resource type="Script" path="res://character/PolarNPC/polar_npc.gd" id="2_287mb"]
+
+[node name="Actor" instance=ExtResource("1_b35kn")]
+script = ExtResource("2_287mb")
+skin = null
+
+[node name="Sprite2D" parent="." index="1"]
+texture = null
+
+[node name="HitboxPivot" parent="." index="6"]
+visible = false
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

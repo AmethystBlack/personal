@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwexevpb0giax"]
 
 [ext_resource type="Texture2D" uid="uid://cijjnujob5mst" path="res://World/Bush.png" id="1_1mdno"]
-[ext_resource type="Texture2D" uid="uid://bslys1k3ulknk" path="res://Shadows/LargeShadow.png" id="1_1qpcq"]
+[ext_resource type="Texture2D" uid="uid://bslys1k3ulknk" path="res://character/Shadows/LargeShadow.png" id="1_1qpcq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ofxwp"]
 radius = 6.0

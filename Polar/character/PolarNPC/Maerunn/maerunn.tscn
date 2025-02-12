@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpsu26l2hhpej"]
+
+[ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_5hmaq"]
+[ext_resource type="Texture2D" uid="uid://ckhjeg2ad6pu4" path="res://character/PolarNPC/Maerunn/maerunn.png" id="2_4itbv"]
+
+[node name="Maerunn" instance=ExtResource("1_5hmaq")]
+skin = ExtResource("2_4itbv")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_4itbv")
+
+[node name="Stats" parent="." index="10"]
+initiative = 60
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

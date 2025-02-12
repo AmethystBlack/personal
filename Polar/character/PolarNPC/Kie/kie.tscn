@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg1vgh6e663la"]
+
+[ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_1lk4q"]
+[ext_resource type="Texture2D" uid="uid://csmjlgl3cwats" path="res://character/PolarNPC/Kie/kie.png" id="2_vsvjc"]
+
+[node name="Kie" instance=ExtResource("1_1lk4q")]
+skin = ExtResource("2_vsvjc")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_vsvjc")
+offset = Vector2(-8, -24)
+
+[node name="Stats" parent="." index="10"]
+initiative = 80
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

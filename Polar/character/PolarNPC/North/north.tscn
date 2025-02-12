@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl43gw1adhgb3"]
+
+[ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_sm4km"]
+[ext_resource type="Texture2D" uid="uid://chjobgepdvwji" path="res://character/PolarNPC/North/north.png" id="2_m8yvf"]
+
+[node name="North" instance=ExtResource("1_sm4km")]
+skin = ExtResource("2_m8yvf")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_m8yvf")
+offset = Vector2(-11, -23)
+
+[node name="Stats" parent="." index="10"]
+initiative = 35
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

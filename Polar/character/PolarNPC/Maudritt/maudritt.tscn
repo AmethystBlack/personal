@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw8svlreobops"]
+
+[ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_sj81c"]
+[ext_resource type="Texture2D" uid="uid://b3x5c65co34cm" path="res://character/PolarNPC/Maudritt/maudritt.png" id="2_ysf17"]
+
+[node name="Maudritt" instance=ExtResource("1_sj81c")]
+skin = ExtResource("2_ysf17")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_ysf17")
+
+[node name="Stats" parent="." index="10"]
+initiative = 10
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

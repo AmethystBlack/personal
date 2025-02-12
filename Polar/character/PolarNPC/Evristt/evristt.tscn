@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv4cnppkqkhks"]
+
+[ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_x42jb"]
+[ext_resource type="Texture2D" uid="uid://bf767kmedhlw8" path="res://character/PolarNPC/Evristt/evristt.png" id="2_yrk7i"]
+
+[node name="Evristt" instance=ExtResource("1_x42jb")]
+skin = ExtResource("2_yrk7i")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_yrk7i")
+offset = Vector2(-24, -48)
+
+[node name="Stats" parent="." index="10"]
+initiative = 70
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv6t84rhuvugj"]
+
+[ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_kihri"]
+[ext_resource type="Texture2D" uid="uid://x2um4cx16hv4" path="res://character/PolarNPC/Brite/brite.png" id="2_2nehx"]
+
+[node name="Brite" instance=ExtResource("1_kihri")]
+skin = ExtResource("2_2nehx")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_2nehx")
+offset = Vector2(-8, -24)
+
+[node name="Stats" parent="." index="10"]
+initiative = 55
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

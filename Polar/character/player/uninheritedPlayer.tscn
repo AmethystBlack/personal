@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://cogtheoh5de17"]
+
+[ext_resource type="Script" path="res://character/player/Player.gd" id="1_fp3fo"]
+[ext_resource type="Texture2D" uid="uid://bi2wibwxk5ptl" path="res://character/trchar088.png" id="2_opfej"]
+[ext_resource type="PackedScene" uid="uid://da24yl2y8xbyy" path="res://character/actor.tscn" id="3_2kvgk"]
+[ext_resource type="PackedScene" uid="uid://cpps0v62eks1q" path="res://Overlap/hitbox.tscn" id="4_522r4"]
+[ext_resource type="Script" path="res://character/player/SwordHitbox.gd" id="5_uhk6e"]
+[ext_resource type="PackedScene" uid="uid://d03nxqp6kni4c" path="res://Overlap/hurtbox.tscn" id="6_rjpti"]
+[ext_resource type="Script" path="res://character/player/camera_control.gd" id="7_4r5da"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mn2o2"]
+radius = 17.0
+height = 36.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4wpnt"]
+radius = 4.0
+height = 14.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_fp3fo")
+skin = ExtResource("2_opfej")
+
+[node name="Actor" parent="." instance=ExtResource("3_2kvgk")]
+
+[node name="HitboxPivot" type="Marker2D" parent="."]
+position = Vector2(0, -6)
+rotation = 1.5708
+
+[node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource("4_522r4")]
+position = Vector2(14, -7)
+collision_layer = 8
+script = ExtResource("5_uhk6e")
+
+[node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
+visible = false
+position = Vector2(-4, 6)
+shape = SubResource("CapsuleShape2D_mn2o2")
+disabled = true
+
+[node name="Hurtbox" parent="." instance=ExtResource("6_rjpti")]
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+visible = false
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_4wpnt")
+
+[node name="CameraControl" type="RemoteTransform2D" parent="."]
+script = ExtResource("7_4r5da")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="Hurtbox"]

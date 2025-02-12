@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cy8r86ekqnyvo" path="res://Effects/HitEffect.png" id="1_80ctg"]
 [ext_resource type="Script" path="res://Effects/effect.gd" id="2_0lmb3"]
-[ext_resource type="AudioStream" uid="uid://ctaqggqg557lj" path="res://Music and Sounds/Hit.wav" id="3_qnimv"]
+[ext_resource type="AudioStream" uid="uid://ctaqggqg557lj" path="res://audio/Hit.wav" id="3_qnimv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fv6yh"]
 atlas = ExtResource("1_80ctg")

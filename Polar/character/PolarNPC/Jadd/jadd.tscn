@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4em5h36oqqlm"]
+
+[ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_0kola"]
+[ext_resource type="Texture2D" uid="uid://bdj83tmyqp7ia" path="res://character/PolarNPC/Jadd/jadd.png" id="2_eigf4"]
+
+[node name="Jadd" instance=ExtResource("1_0kola")]
+skin = ExtResource("2_eigf4")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_eigf4")
+offset = Vector2(-7, -22)
+
+[node name="Stats" parent="." index="10"]
+initiative = 55
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

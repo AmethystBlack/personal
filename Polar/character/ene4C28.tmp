@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://kugrr4otlc72"]
+
+[ext_resource type="PackedScene" uid="uid://da24yl2y8xbyy" path="res://character/actor.tscn" id="1_qu7fj"]
+[ext_resource type="Script" path="res://character/enemy.gd" id="2_ivsh4"]
+[ext_resource type="Shader" path="res://WhiteColor.gdshader" id="3_d8lj2"]
+[ext_resource type="PackedScene" uid="uid://bkccr22ecvuwk" path="res://character/Enemies/wander_controller.tscn" id="4_r1xl5"]
+[ext_resource type="PackedScene" uid="uid://vvpspuh22nl5" path="res://character/Enemies/player_detection_zone.tscn" id="5_wjjoc"]
+[ext_resource type="PackedScene" uid="uid://cbhmwimui3knc" path="res://Overlap/soft_collision.tscn" id="6_kvt83"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1law7"]
+shader = ExtResource("3_d8lj2")
+shader_parameter/active = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x2226"]
+radius = 88.2043
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b47nr"]
+radius = 7.0
+
+[node name="Enemy" instance=ExtResource("1_qu7fj")]
+script = ExtResource("2_ivsh4")
+skin = null
+
+[node name="Sprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_1law7")
+
+[node name="Hurtbox" parent="." index="7"]
+collision_mask = 8
+
+[node name="WanderController" parent="." index="10" instance=ExtResource("4_r1xl5")]
+
+[node name="PlayerDetectionZone" parent="." index="11" instance=ExtResource("5_wjjoc")]
+collision_layer = 0
+
+[node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
+shape = SubResource("CircleShape2D_x2226")
+
+[node name="SoftCollision" parent="." index="12" instance=ExtResource("6_kvt83")]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource("CircleShape2D_b47nr")
+
+[node name="Stats" parent="." index="13"]
+max_health = 3
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="PlayerDetectionZone"]
+[editable path="SoftCollision"]

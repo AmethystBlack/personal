@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://csvuk4q1vpfyh"]
+
+[ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_ee3cn"]
+[ext_resource type="Texture2D" uid="uid://c1fdqaowekqxu" path="res://character/PolarNPC/Flaw/flaw.png" id="2_68fkc"]
+
+[node name="Flaw" instance=ExtResource("1_ee3cn")]
+skin = ExtResource("2_68fkc")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_68fkc")
+offset = Vector2(-8, -24)
+
+[node name="Stats" parent="." index="10"]
+initiative = 45
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

@@ -6,6 +6,8 @@ var max_hearts: set = set_max_hearts
 @onready var heartUIFull = $HeartUIFull
 @onready var heartUIEmpty = $HeartUIEmpty
 
+var playerUnit = null
+
 func set_hearts(value):
 	hearts = clamp(value, 0, max_hearts)
 	if heartUIFull != null:
@@ -17,7 +19,11 @@ func set_max_hearts(value):
 		heartUIEmpty.size.x = (max_hearts * 15)
 	
 func _ready():
-	max_hearts = PlayerStats.max_health
-	hearts = PlayerStats.health
-	PlayerStats.connect("health_changed", Callable(self, "set_hearts"))
-	PlayerStats.connect("max_health_changed", Callable(self, "set_max_hearts"))
+	pass
+	
+func setupHP(givenStats):
+	playerUnit = givenStats
+	max_hearts = playerUnit.max_health
+	hearts = playerUnit.health
+	playerUnit.connect("health_changed", Callable(self, "set_hearts"))
+	playerUnit.connect("max_health_changed", Callable(self, "set_max_hearts"))

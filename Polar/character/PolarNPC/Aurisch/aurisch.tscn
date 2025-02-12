@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkgsyq77bd7wi"]
+
+[ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_8ruue"]
+[ext_resource type="Texture2D" uid="uid://cgn4ognmkoq8w" path="res://character/PolarNPC/Aurisch/aurisch.png" id="2_8rp3h"]
+
+[node name="Aurisch" instance=ExtResource("1_8ruue")]
+skin = ExtResource("2_8rp3h")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_8rp3h")
+offset = Vector2(-8, -21)
+
+[node name="Stats" parent="." index="10"]
+initiative = 40
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]

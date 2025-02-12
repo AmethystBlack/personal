@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bh4bcfe6newxs"]
 
-[ext_resource type="Texture2D" uid="uid://bslys1k3ulknk" path="res://Shadows/LargeShadow.png" id="1_h72il"]
+[ext_resource type="Texture2D" uid="uid://bslys1k3ulknk" path="res://character/Shadows/LargeShadow.png" id="1_h72il"]
 [ext_resource type="Texture2D" uid="uid://coa3gamnwdtjd" path="res://World/Tree.png" id="2_mmruj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppqmn"]

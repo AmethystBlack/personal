@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bppy1v877ixdq"]
+
+[ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_1m804"]
+[ext_resource type="Texture2D" uid="uid://citqyg7s7wxxf" path="res://character/PolarNPC/Thurna/thurna.png" id="2_v1y17"]
+
+[node name="Thurna" instance=ExtResource("1_1m804")]
+skin = ExtResource("2_v1y17")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_v1y17")
+offset = Vector2(-8, -21)
+
+[node name="Stats" parent="." index="10"]
+initiative = 90
+
+[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/InteractRange"]
+[editable path="Hurtbox"]
+[editable path="SoftCollision"]
