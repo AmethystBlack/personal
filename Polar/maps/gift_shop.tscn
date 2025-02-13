@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=4 uid="uid://pl4hj0pbb0lx"]
+[gd_scene load_steps=17 format=4 uid="uid://pl4hj0pbb0lx"]
 
 [ext_resource type="PackedScene" uid="uid://b0tolekoe2wyv" path="res://maps/mapBase.tscn" id="1_5fy6g"]
+[ext_resource type="Script" path="res://maps/gift_shop.gd" id="2_3s7q7"]
 [ext_resource type="PackedScene" uid="uid://dddrl6onubuqm" path="res://character/PolarNPC/Allia/allia.tscn" id="2_b6qbh"]
 [ext_resource type="PackedScene" uid="uid://bkgsyq77bd7wi" path="res://character/PolarNPC/Aurisch/aurisch.tscn" id="3_k5hpl"]
 [ext_resource type="PackedScene" uid="uid://bv6t84rhuvugj" path="res://character/PolarNPC/Brite/brite.tscn" id="4_vvdiq"]
@@ -21,6 +22,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(5, 5, 478, 3, 476, 316, 4, 318)])
 
 [node name="Map" instance=ExtResource("1_5fy6g")]
+script = ExtResource("2_3s7q7")
 
 [node name="NavigationRegion2D" parent="." index="1"]
 navigation_polygon = SubResource("NavigationPolygon_egqlm")
@@ -66,3 +68,6 @@ position = Vector2(217, 279)
 
 [node name="Venillo" parent="ObjectPlane" index="12" instance=ExtResource("14_56wej")]
 position = Vector2(286, 155)
+
+[node name="TopLeft" parent="Limits" index="0"]
+position = Vector2(-29, -18)

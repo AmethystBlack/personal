@@ -17,6 +17,9 @@ var actors = null
 
 func tx(text): 
 	await HUD.tx(text)
+	
+func stx(text): 
+	await HUD.stx(text)
 
 func setShortcuts():
 	World = get_tree().get_current_scene().get_node("%World")

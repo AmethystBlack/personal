@@ -32,5 +32,13 @@ func tx(text):
 	add_child(diaObj)
 	await diaObj.dialogue_ended
 
+func stx(text):
+	controlState = HUD.DIALOG
+	var diaObj = dialog.instantiate()
+	diaObj.smallDialogue = true
+	diaObj.text = text
+	add_child(diaObj)
+	await diaObj.dialogue_ended
+
 func freeControls():
 	controlState = HUD.OPEN

@@ -4,4 +4,5 @@ class_name PolarNPC
 
 func _ready():
 	super._ready()
-	h.Party.append(self)
+	if h:
+		h.Party.append(self)

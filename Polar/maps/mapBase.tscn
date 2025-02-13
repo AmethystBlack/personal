@@ -10,8 +10,6 @@ agent_radius = 7.0
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_2x6cx")
-boundsTopLeft = Vector2(-50, -50)
-boundsBottomRight = Vector2(600, 450)
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -35,3 +33,11 @@ y_sort_enabled = true
 
 [node name="PlayerStart" type="Marker2D" parent="."]
 position = Vector2(243, 149)
+
+[node name="Limits" type="Node" parent="."]
+
+[node name="TopLeft" type="Marker2D" parent="Limits"]
+position = Vector2(-24, -17)
+
+[node name="BottomRight" type="Marker2D" parent="Limits"]
+position = Vector2(498, 336)

@@ -16,12 +16,6 @@ metadata/_edit_lock_ = true
 [node name="Camera2D" parent="World" instance=ExtResource("4_ajvfg")]
 position = Vector2(0, 0)
 
-[node name="TopLeft" parent="World/Camera2D/Limits" index="0"]
-position = Vector2(64, 7)
-
-[node name="BottomRight" parent="World/Camera2D/Limits" index="1"]
-position = Vector2(496, 295)
-
 [node name="HUD" type="CanvasLayer" parent="World"]
 unique_name_in_owner = true
 script = ExtResource("3_imgkc")

@@ -1,8 +1,8 @@
 extends Node2D
 class_name Map
 
-@export var boundsTopLeft = Vector2.ZERO
-@export var boundsBottomRight = Vector2.ZERO
+@onready var boundsTopLeft = $Limits/TopLeft.position
+@onready var boundsBottomRight = $Limits/BottomRight.position
 
 var Player = preload("res://character/player/player.tscn")
 var playerGraphic = preload("res://character/trchar088.png")
@@ -47,6 +47,7 @@ func interact(targetEvent):
 	var char = h.actors[targetEvent]
 	if char.has_method("interactedWith"):
 		char.interactedWith()
+	targetEvent = targetEvent.to_lower()
 	await interactList(targetEvent)
 	endInteraction(char)
 

@@ -5,25 +5,43 @@
 [ext_resource type="FontFile" uid="uid://rhari2b1b4ws" path="res://UI/MorePerfectDOSVGA.ttf" id="3_0tk1y"]
 
 [node name="Control" type="Control"]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 120.0
+script = ExtResource("1_rvay1")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rvay1")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(82, 158)
-scale = Vector2(0.543333, 0.39)
 texture = ExtResource("1_b6bm6")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
 
-[node name="Text" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 139.0
-offset_right = 164.0
-offset_bottom = 177.0
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Text" type="RichTextLabel" parent="NinePatchRect/MarginContainer"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_0tk1y")
-theme_override_font_sizes/normal_font_size = 9
-text = "Test dialogue"
+theme_override_font_sizes/normal_font_size = 16
+text = "Test dialogue a"

@@ -22,8 +22,8 @@ func loadMap():
 	setCameraBounds(newMap)
 	
 func setCameraBounds(map):
-	$Camera2D/Limits/TopLeft.position = map.boundsTopLeft
-	$Camera2D/Limits/BottomRight.position = map.boundsBottomRight
+	$Camera2D.topLeft = map.boundsTopLeft
+	$Camera2D.bottomRight = map.boundsBottomRight
 	$Camera2D.set_bounds()
 	
 	
