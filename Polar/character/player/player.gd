@@ -1,4 +1,4 @@
-extends Actor
+extends PolarNPC
 
 
 var roll_vector = Vector2.RIGHT

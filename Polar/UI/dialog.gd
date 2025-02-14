@@ -6,6 +6,9 @@ var speaker = null
 @onready var text_obj = get_node("%Text")
 @onready var timer = $Timer
 
+var fullyTyped = false
+var textTween = null
+
 @onready var text : String = "" :
 	set (value):
 		if not text_obj:
@@ -29,7 +32,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if smallDialogue != true:
 		if Input.is_action_just_pressed("attack"):
-			nextDialog()
+			if fullyTyped == true:
+				nextDialog()
+			else:
+				rushText()
 
 func setPosition():
 	size.x = 360
@@ -58,17 +64,16 @@ func smallSizing(): #this was weirdly fuck. also it needs to be centered to beha
 	text_obj.visible_ratio = 0
 
 func typeText():
-	print(text_obj.text)
 	visible = true
 	var parsedText = text_obj.get_parsed_text()
-	var textTween = get_tree().create_tween()
 	var speed = parsedText.length() * 0.02
-	print(parsedText.length())
-	print(speed)
+	textTween = get_tree().create_tween()
+	textTween.connect("finished", textFullyTyped)
 	textTween.tween_property(text_obj, "visible_ratio", 1.0, speed)
 	if(smallDialogue == true):
 		textTween.tween_callback(timer.start.bind(((speed * 2) + 1)))
-
+	
+	
 func nextDialog():
 	h.HUD.freeControls()
 	closeDialog()
@@ -85,8 +90,14 @@ func positionSmallText():
 		position.x = -((size.x) / 2)
 		position.y = -((size.y) + 24)
 		
+func textFullyTyped():
+	fullyTyped = true
 	
-
+func rushText():
+	textTween.kill()
+	text_obj.visible_ratio = 1
+	fullyTyped = true
+	
 # group dialogues
 	#
 	#var bigString = ("
