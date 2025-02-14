@@ -21,6 +21,7 @@ const ROLL_SPEED = 80
 @onready var navigation_agent = $NavigationAgent2D
 @onready var hitbox_pivot = $HitboxPivot
 @onready var _sprite: Sprite2D = $Sprite2D
+@onready var subHUD = $SubHUD
 
 enum State {
 	IDLE,
@@ -126,7 +127,7 @@ func updateFacing(vector2):
 	
 func interactedWith():
 	reservedFacing = facingVector
-	faceCharacter(h.actors["Player"])
+	faceCharacter(h.actors["player"])
 	
 func faceReserved():
 	if reservedFacing != Vector2.ZERO:

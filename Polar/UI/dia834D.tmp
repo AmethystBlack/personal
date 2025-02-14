@@ -5,7 +5,6 @@
 [ext_resource type="FontFile" uid="uid://rhari2b1b4ws" path="res://UI/MorePerfectDOSVGA.ttf" id="3_0tk1y"]
 
 [node name="Control" type="MarginContainer"]
-visible = false
 custom_minimum_size = Vector2(100, 40)
 offset_right = 360.0
 offset_bottom = 120.0
@@ -16,7 +15,6 @@ theme_override_constants/margin_bottom = 2
 script = ExtResource("1_rvay1")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-clip_contents = true
 layout_mode = 2
 texture = ExtResource("1_b6bm6")
 patch_margin_left = 12
@@ -27,17 +25,22 @@ patch_margin_bottom = 12
 [node name="Resize" type="MarginContainer" parent="NinePatchRect"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 132.0
+offset_bottom = 96.0
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="Text" type="RichTextLabel" parent="NinePatchRect/Resize"]
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect/Resize"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/Resize/ScrollContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="NinePatchRect/Resize/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(100, 10)

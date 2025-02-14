@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var dialog = preload("res://UI/dialog.tscn")
+var smallDialog = preload("res://UI/smallDialog.tscn")
 
 @onready var healthUi = $HealthUI
 
@@ -32,12 +33,16 @@ func tx(text):
 	add_child(diaObj)
 	await diaObj.dialogue_ended
 
-func stx(text):
-	controlState = HUD.DIALOG
-	var diaObj = dialog.instantiate()
+func stx(text,speaker = null):
+	#controlState = HUD.DIALOG
+	var diaObj = smallDialog.instantiate()
 	diaObj.smallDialogue = true
 	diaObj.text = text
-	add_child(diaObj)
+	if speaker != null:
+		diaObj.speaker = speaker
+		speaker.add_child(diaObj)
+	else:
+		add_child(diaObj)
 	await diaObj.dialogue_ended
 
 func freeControls():

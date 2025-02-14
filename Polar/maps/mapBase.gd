@@ -40,10 +40,12 @@ func createPlayer():
 func subscribeActors():
 	var actorNodes = $ObjectPlane.get_children()
 	for actor in actorNodes:
-		actors[actor.name] = actor
+		var lowerName = actor.name.to_lower()
+		actors[lowerName] = actor
 	h.actors = actors
 
 func interact(targetEvent):
+	targetEvent = targetEvent.to_lower()
 	var char = h.actors[targetEvent]
 	if char.has_method("interactedWith"):
 		char.interactedWith()
