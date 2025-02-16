@@ -10,3 +10,6 @@ func interactList(targetEvent):
 			await h.stx("sorry it's not my fault the programmer just needs me to never shut up, so lets get that lorem ipsum girlfriend!", h.actors["player"])
 		"kie":
 			h.HUD.fadeOut(2)
+			await h.wait(1)
+			h.HUD.fadeIn(2)
+			await h.stx("um?", this)

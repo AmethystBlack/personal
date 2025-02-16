@@ -14,7 +14,7 @@ var controlState = hudState.OPEN
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	fadeIn(10)
+	fadeIn(1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,8 +53,10 @@ func fadeIn(duration: float = 1):
 		var speed = (1 / duration)
 		screenAnim.speed_scale = speed
 		screenAnim.play("FadeIn")
+		await screenAnim.animation_finished
 		
 func fadeOut(duration: float = 1):
 		var speed = (1 / duration)
 		screenAnim.speed_scale = speed
 		screenAnim.play("FadeOut")
+		await screenAnim.animation_finished

@@ -20,6 +20,9 @@ func tx(text):
 	
 func stx(text, speaker = null): 
 	await HUD.stx(text, speaker)
+	
+func wait(duration: float):
+	await get_tree().create_timer(duration).timeout
 
 func setShortcuts():
 	World = get_tree().get_current_scene().get_node("%World")
