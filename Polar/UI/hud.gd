@@ -4,16 +4,17 @@ var dialog = preload("res://UI/dialog.tscn")
 var smallDialog = preload("res://UI/smallDialog.tscn")
 
 @onready var healthUi = $HealthUI
+@onready var screenAnim = $ScreenFade/AnimationPlayer
 
-enum HUD {
+enum hudState {
 	OPEN,
 	DIALOG	
 }
-var controlState = HUD.OPEN
+var controlState = hudState.OPEN
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	fadeIn(10)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,20 +22,20 @@ func _process(delta: float) -> void:
 	pass
 	
 func canControl():
-	if controlState == HUD.OPEN:
+	if controlState == hudState.OPEN:
 		return true
 	else:
 		return false
 
 func tx(text):
-	controlState = HUD.DIALOG
+	controlState = hudState.DIALOG
 	var diaObj = dialog.instantiate()
 	diaObj.text = text
 	add_child(diaObj)
 	await diaObj.dialogue_ended
 
 func stx(text,speaker = null):
-	#controlState = HUD.DIALOG
+	#controlState = hudState.DIALOG
 	var diaObj = smallDialog.instantiate()
 	diaObj.smallDialogue = true
 	diaObj.text = text
@@ -46,4 +47,14 @@ func stx(text,speaker = null):
 	await diaObj.dialogue_ended
 
 func freeControls():
-	controlState = HUD.OPEN
+	controlState = hudState.OPEN
+
+func fadeIn(duration: float = 1):
+		var speed = (1 / duration)
+		screenAnim.speed_scale = speed
+		screenAnim.play("FadeIn")
+		
+func fadeOut(duration: float = 1):
+		var speed = (1 / duration)
+		screenAnim.speed_scale = speed
+		screenAnim.play("FadeOut")

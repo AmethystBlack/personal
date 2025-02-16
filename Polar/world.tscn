@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfko6secrtiaj"]
+[gd_scene load_steps=4 format=3 uid="uid://cfko6secrtiaj"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_ona1s"]
-[ext_resource type="Script" path="res://UI/hud.gd" id="3_imgkc"]
+[ext_resource type="PackedScene" uid="uid://bm18kxhj4qgv6" path="res://UI/hud.tscn" id="3_or4pv"]
 [ext_resource type="PackedScene" uid="uid://b4g83uywf2mha" path="res://camera_2d.tscn" id="4_ajvfg"]
-[ext_resource type="PackedScene" uid="uid://ct0b0wywc8ju6" path="res://UI/health_ui.tscn" id="8_qvr88"]
 
 [node name="Main" type="Node2D"]
+
+[node name="HUD" parent="." instance=ExtResource("3_or4pv")]
+unique_name_in_owner = true
 
 [node name="World" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -15,16 +17,6 @@ metadata/_edit_lock_ = true
 
 [node name="Camera2D" parent="World" instance=ExtResource("4_ajvfg")]
 position = Vector2(0, 0)
-
-[node name="HUD" type="CanvasLayer" parent="World"]
-unique_name_in_owner = true
-script = ExtResource("3_imgkc")
-
-[node name="HealthUI" parent="World/HUD" instance=ExtResource("8_qvr88")]
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 44.0
-offset_bottom = 43.0
 
 [node name="PlayerInfo" type="Node" parent="World"]
 unique_name_in_owner = true
