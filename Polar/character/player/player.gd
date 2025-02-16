@@ -3,12 +3,14 @@ extends PolarNPC
 
 var roll_vector = Vector2.RIGHT
 
-var moveVector = Vector2.ZERO
-
+var moveVector : Vector2 = Vector2.ZERO :
+	set (value):
+		moveVector = value
+		updateVectorAnims(moveVector)
 
 @onready var swordHitbox = $HitboxPivot/SwordHitbox
 @onready var interactHitbox = $HitboxPivot/InteractRange/CollisionShape2D
-@onready var control = $PlayerControl
+#@onready var control = $PlayerControl
 
 
 func _ready():
@@ -20,8 +22,7 @@ func _ready():
 	state = State.MOVING
 
 func _process(_delta):
-	moveVector = control.getInputVector()
-	updateVectorAnims(moveVector)
+	pass
 
 func _physics_process(delta):
 	match state:

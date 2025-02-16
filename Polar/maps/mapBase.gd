@@ -10,6 +10,7 @@ var playerGraphic = preload("res://character/trchar088.png")
 @onready var player_start = $PlayerStart
 
 var actors = {}
+var a = actors
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +22,8 @@ func _ready() -> void:
 		createPlayer()
 	subscribeActors()
 	h.map = self
+	
+	autoplay()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -55,6 +58,9 @@ func interact(targetEvent):
 
 func interactList(targetEvent):
 	end(targetEvent)
+	
+func autoplay():
+	pass	
 	
 func end(targetEvent): # just an alias
 	h.actors[targetEvent].done_interacting.emit()
