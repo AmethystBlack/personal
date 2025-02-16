@@ -48,3 +48,5 @@ func EnembleInterval(npc,act = false):
 		var init = npc.stats.roll_initiative()
 		var interval = (100 - init) / 50 # this last number effectively decides the Scale of the reactions
 		return interval
+		
+		print("oh shit for real")
