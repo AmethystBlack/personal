@@ -2,6 +2,15 @@
 extends CharacterBody2D
 class_name Actor
 
+@export var skin: Texture : set = set_skin
+
+const PlayerHurtSound = preload("res://character/player/player_hurt_sound.tscn")
+
+#const ACCELERATION = 300
+#const MAX_SPEED = 220
+const ROLL_SPEED = 80
+#const FRICTION = 1400
+
 @onready var stats = $Stats
 @onready var animationPlayer = $AnimationPlayer
 @onready var blinkAnimationPlayer = $BlinkAnimationPlayer
@@ -14,17 +23,8 @@ class_name Actor
 @onready var _sprite: Sprite2D = $Sprite2D
 #@onready var subHUD = $SubHUD
 
-
-@export var skin: Texture : set = set_skin
 enum DIRECTIONS { DOWN , LEFT , RIGHT , UP }
 @export var defaultFacing: DIRECTIONS : set = setFacing
-
-const PlayerHurtSound = preload("res://character/player/player_hurt_sound.tscn")
-
-#const ACCELERATION = 300
-#const MAX_SPEED = 220
-const ROLL_SPEED = 80
-#const FRICTION = 1400
 
 enum State {
 	IDLE,
@@ -55,36 +55,32 @@ func set_skin(value: Texture) -> void:
 		var h = value.get_height()
 		_sprite.offset.x = -((w/_sprite.hframes)/2)
 		_sprite.offset.y = -(h/_sprite.vframes)
-		
+
+	
 func setFacing(value):
 	defaultFacing = value
-	match defaultFacing:
-		DIRECTIONS.DOWN:
-			facingVector = Vector2.DOWN
-			if Engine.is_editor_hint():
+	if Engine.is_editor_hint():
+		print(_sprite)
+		match defaultFacing:
+			DIRECTIONS.DOWN:
 				_sprite.frame = 0
-		DIRECTIONS.LEFT:
-			facingVector = Vector2.LEFT
-			if Engine.is_editor_hint():
+			DIRECTIONS.LEFT:
 				_sprite.frame = 4
-		DIRECTIONS.RIGHT:
-			facingVector = Vector2.RIGHT
-			if Engine.is_editor_hint():
+			DIRECTIONS.RIGHT:
 				_sprite.frame = 8
-		DIRECTIONS.UP:
-			facingVector = Vector2.UP
-			if Engine.is_editor_hint():
+			DIRECTIONS.UP:
 				_sprite.frame = 12
-	#print(facingVector)
-	await ready
-	updateFacing(facingVector)
+		print(_sprite.frame)
+	else:
+		await ready
+		updateDefaultFacing()
 
 func _ready():
-	randomize()
+	#randomize()
 	self.stats.connect("no_health", queue_free)
 	if not Engine.is_editor_hint():
 		animationTree.active = true
-	#faceDown()
+	updateDefaultFacing()
 
 func _physics_process(delta):
 	match state:
@@ -145,13 +141,13 @@ func path_state(_delta):
 	move_and_slide()
 
 func updateFacing(vector2):
-	print(vector2)
-	animationTree.set("parameters/Idle/blend_position",vector2)
-	animationTree.set("parameters/Run/blend_position",vector2)
-	animationTree.set("parameters/Attack/blend_position",vector2)
-	animationTree.set("parameters/Roll/blend_position",vector2)
-	hitbox_pivot.rotation = vector2.angle()
-	facingVector = vector2
+	if not Engine.is_editor_hint():
+		animationTree.set("parameters/Idle/blend_position",vector2)
+		animationTree.set("parameters/Run/blend_position",vector2)
+		animationTree.set("parameters/Attack/blend_position",vector2)
+		animationTree.set("parameters/Roll/blend_position",vector2)
+		hitbox_pivot.rotation = vector2.angle()
+		facingVector = vector2
 	
 func interactedWith():
 	reservedFacing = facingVector
@@ -181,3 +177,15 @@ func faceCharacter(targetCharacter):
 func facePoint(point: Vector2):
 	var destination = self.position.direction_to(point)
 	updateFacing(destination)
+	
+func updateDefaultFacing():
+	match defaultFacing:
+		DIRECTIONS.DOWN:
+			faceDown()
+		DIRECTIONS.LEFT:
+			faceLeft()
+		DIRECTIONS.RIGHT:
+			faceRight()
+		DIRECTIONS.UP:
+			faceUp()
+	

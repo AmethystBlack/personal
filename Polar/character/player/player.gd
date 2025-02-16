@@ -80,8 +80,8 @@ func _on_player_control_actor_misc() -> void:
 	process_misc()
 
 func process_misc():
-	#interact()
-	h.EnsembleFace()
+	interact()
+	#h.EnsembleFace()
 	
 func interact():
 	interactHitbox.disabled = false
