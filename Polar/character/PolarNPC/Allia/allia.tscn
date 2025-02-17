@@ -1,17 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dddrl6onubuqm"]
+[gd_scene load_steps=2 format=3 uid="uid://dddrl6onubuqm"]
 
 [ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_ac4du"]
-[ext_resource type="Texture2D" uid="uid://chs2ost1jw1mb" path="res://character/PolarNPC/Allia/allia.png" id="2_8a70a"]
 
 [node name="Allia" instance=ExtResource("1_ac4du")]
-skin = ExtResource("2_8a70a")
-
-[node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("2_8a70a")
-offset = Vector2(-8, -21)
 
 [node name="Stats" parent="." index="10"]
 initiative = 35
+
+[node name="NavigationAgent2D" parent="." index="12"]
+path_desired_distance = 20.0
+target_desired_distance = 10.0
+path_postprocessing = 0
+simplify_path = false
+radius = 10.0
+debug_enabled = false
 
 [editable path="HitboxPivot/SwordHitbox"]
 [editable path="HitboxPivot/InteractRange"]

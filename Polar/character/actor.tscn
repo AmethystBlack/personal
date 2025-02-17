@@ -440,6 +440,12 @@ visible = false
 shape = SubResource("CircleShape2D_uhepv")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 8.0
+target_desired_distance = 2.0
+path_postprocessing = 1
+simplify_path = true
+radius = 12.0
+debug_enabled = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
