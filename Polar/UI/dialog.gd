@@ -4,7 +4,9 @@ var smallDialogue = false
 var speaker = null
 
 @onready var text_obj = get_node("%Text")
-@onready var timer = $Timer
+@onready var name_box = $NameBox
+@onready var name_text = get_node("%NameText")
+@onready var timer = get_node_or_null(^"Timer")
 
 var fullyTyped = false
 var textTween = null
@@ -13,7 +15,8 @@ var textTween = null
 	set (value):
 		if not text_obj:
 			await ready
-		text_obj.text = value
+		var parsedText = parseText(value)
+		text_obj.text = parsedText
 		if smallDialogue == true:
 			text_obj.text = "[center]" + value + "[/center]"
 			smallSizing()
@@ -62,6 +65,25 @@ func smallSizing(): #this was weirdly fuck. also it needs to be centered to beha
 	await positionSmallText()
 	
 	text_obj.visible_ratio = 0
+	
+func parseText(text: String):
+	if(text.begins_with("[")):
+		var splitText = text.split("]", false, 1)
+		var speaker = splitText[0]
+		text = splitText[1]
+		speaker = speaker.lstrip("[")
+		text = text.lstrip(" ")
+		if(speaker == ""):
+			speaker = h.HUD.lastSpeaker
+		if(speaker != ""):
+			setName(speaker)
+	return text
+	
+func setName(speaker):
+	speaker = speaker.capitalize()
+	name_text.text = speaker
+	h.HUD.lastSpeaker = speaker
+	name_box.visible = true
 
 func typeText():
 	visible = true
