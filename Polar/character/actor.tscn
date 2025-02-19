@@ -15,10 +15,6 @@
 shader = ExtResource("3_7le1c")
 shader_parameter/active = false
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_td4ak"]
-radius = 7.0
-height = 20.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hcbah"]
 radius = 2.0
 height = 8.0
@@ -347,6 +343,10 @@ height = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uhepv"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_td4ak"]
+radius = 7.0
+height = 20.0
+
 [node name="Actor" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_rvb4x")
@@ -363,15 +363,6 @@ centered = false
 offset = Vector2(-8, -20)
 hframes = 4
 vframes = 4
-
-[node name="Interaction" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
-visible = false
-position = Vector2(0, -10)
-shape = SubResource("CapsuleShape2D_td4ak")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -440,10 +431,27 @@ visible = false
 shape = SubResource("CircleShape2D_uhepv")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 8.0
+target_desired_distance = 2.0
+path_postprocessing = 1
+simplify_path = true
+radius = 12.0
+debug_enabled = true
+
+[node name="Interaction" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+visible = false
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_td4ak")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
 [connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
+[connection signal="mouse_entered" from="Interaction" to="." method="_on_interaction_mouse_entered"]
+[connection signal="mouse_exited" from="Interaction" to="." method="_on_interaction_mouse_exited"]
 
 [editable path="HitboxPivot/SwordHitbox"]
 [editable path="HitboxPivot/InteractRange"]

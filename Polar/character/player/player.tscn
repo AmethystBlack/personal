@@ -642,7 +642,7 @@ material = SubResource("ShaderMaterial_1lm6m")
 offset = Vector2(-24, -48)
 vframes = 8
 
-[node name="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_sloyf")
 }
@@ -660,6 +660,11 @@ position = Vector2(-6, 6.99997)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_51j4a")
 
+[node name="Stats" parent="." index="9"]
+max_health = 5
+acceleration = 300
+max_speed = 220
+
 [node name="CameraControl" type="RemoteTransform2D" parent="." index="10"]
 script = ExtResource("10_4i6nx")
 
@@ -669,11 +674,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_uxiqm")
-
-[node name="Stats" parent="." index="12"]
-max_health = 5
-acceleration = 300
-max_speed = 220
 
 [connection signal="area_entered" from="HitboxPivot/InteractRange" to="." method="_on_interact_range_area_entered"]
 [connection signal="actor_attacks" from="PlayerControl" to="." method="_on_player_control_actor_attacks"]

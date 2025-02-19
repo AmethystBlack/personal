@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dwkbncw5dkonk" path="res://UI/dialogBg.png" id="2_d5r1o"]
 [ext_resource type="FontFile" uid="uid://rhari2b1b4ws" path="res://UI/MorePerfectDOSVGA.ttf" id="3_5e8om"]
 
-[node name="Control" type="MarginContainer"]
+[node name="SmallDialog" type="MarginContainer"]
 custom_minimum_size = Vector2(100, 40)
 offset_right = 164.0
 offset_bottom = 46.0

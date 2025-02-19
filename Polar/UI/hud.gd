@@ -8,9 +8,11 @@ var smallDialog = preload("res://UI/smallDialog.tscn")
 
 enum hudState {
 	OPEN,
-	DIALOG	
+	DIALOG,
+	DIRECTING
 }
 var controlState = hudState.OPEN
+var lastSpeaker = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,6 +50,12 @@ func stx(text,speaker = null):
 
 func freeControls():
 	controlState = hudState.OPEN
+	
+func isFree():
+	if controlState == hudState.OPEN:
+		return true
+	else:
+		return false
 
 func fadeIn(duration: float = 1):
 		var speed = (1 / duration)
@@ -60,3 +68,7 @@ func fadeOut(duration: float = 1):
 		screenAnim.speed_scale = speed
 		screenAnim.play("FadeOut")
 		await screenAnim.animation_finished
+
+func selectCharacter(actor):
+		controlState = hudState.DIRECTING
+		print("selected " + actor.name)

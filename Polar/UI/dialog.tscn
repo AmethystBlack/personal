@@ -4,18 +4,24 @@
 [ext_resource type="Script" path="res://UI/dialog.gd" id="1_rvay1"]
 [ext_resource type="FontFile" uid="uid://rhari2b1b4ws" path="res://UI/MorePerfectDOSVGA.ttf" id="3_0tk1y"]
 
-[node name="Control" type="MarginContainer"]
-visible = false
+[node name="Dialog" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 356.0
+offset_bottom = 116.0
+script = ExtResource("1_rvay1")
+
+[node name="Margin" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
 offset_right = 360.0
 offset_bottom = 120.0
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
-script = ExtResource("1_rvay1")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="Margin"]
 clip_contents = true
 layout_mode = 2
 texture = ExtResource("1_b6bm6")
@@ -24,8 +30,7 @@ patch_margin_top = 12
 patch_margin_right = 12
 patch_margin_bottom = 12
 
-[node name="Resize" type="MarginContainer" parent="NinePatchRect"]
-unique_name_in_owner = true
+[node name="Resize" type="MarginContainer" parent="Margin/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +42,7 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="Text" type="RichTextLabel" parent="NinePatchRect/Resize"]
+[node name="Text" type="RichTextLabel" parent="Margin/NinePatchRect/Resize"]
 unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(100, 10)
@@ -47,3 +52,46 @@ theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "Test dialogue a"
 fit_content = true
+
+[node name="NameBox" type="MarginContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 0
+offset_left = 12.0
+offset_top = -31.0
+offset_right = 120.0
+offset_bottom = 9.0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NameBox"]
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("1_b6bm6")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="Resize" type="MarginContainer" parent="NameBox/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="NameText" type="Label" parent="NameBox/NinePatchRect/Resize"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0tk1y")
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
