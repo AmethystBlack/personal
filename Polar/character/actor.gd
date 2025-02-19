@@ -90,6 +90,14 @@ func _physics_process(delta):
 			path_state(delta)
 	
 
+func _on_interaction_mouse_entered() -> void:
+	mousedOver = true
+
+
+func _on_interaction_mouse_exited() -> void:
+	mousedOver = false
+
+
 	
 func move_state(delta):	
 	animationState.travel("Idle")
@@ -117,6 +125,12 @@ func path_to_cursor():
 	set_movement_target(get_global_mouse_position())
 	state = State.PATH
 	animationState.travel("Run")
+	
+func runInPlace():
+	animationState.travel("Run")
+	
+func idleInPlace():
+	animationState.travel("Idle")
 
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
@@ -189,11 +203,3 @@ func updateDefaultFacing():
 		DIRECTIONS.UP:
 			faceUp()
 	
-
-
-func _on_interaction_mouse_entered() -> void:
-	mousedOver = true
-
-
-func _on_interaction_mouse_exited() -> void:
-	mousedOver = false

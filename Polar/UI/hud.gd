@@ -13,6 +13,7 @@ enum hudState {
 }
 var controlState = hudState.OPEN
 var lastSpeaker = null
+var selectedChar = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,6 +23,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+
+func _input(event):
+	if controlState == hudState.DIRECTING:
+		if event is InputEventMouseButton && event.pressed == true:
+			selectedChar.path_to_cursor()
+			freeControls()
+			
 	
 func canControl():
 	if controlState == hudState.OPEN:
@@ -50,12 +59,6 @@ func stx(text,speaker = null):
 
 func freeControls():
 	controlState = hudState.OPEN
-	
-func isFree():
-	if controlState == hudState.OPEN:
-		return true
-	else:
-		return false
 
 func fadeIn(duration: float = 1):
 		var speed = (1 / duration)
@@ -70,5 +73,8 @@ func fadeOut(duration: float = 1):
 		await screenAnim.animation_finished
 
 func selectCharacter(actor):
+		actor.runInPlace()
+		selectedChar = actor
+		await h.wait(0.1)
 		controlState = hudState.DIRECTING
-		print("selected " + actor.name)
+		#print("selected " + actor.name)

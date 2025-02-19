@@ -24,7 +24,7 @@ func _ready():
 func _process(_delta):
 	pass
 
-func _physics_process(delta):
+func _physics_process(delta):	
 	match state:
 		State.MOVING:
 			move_state(delta)

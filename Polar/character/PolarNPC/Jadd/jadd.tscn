@@ -10,8 +10,11 @@ skin = ExtResource("2_eigf4")
 texture = ExtResource("2_eigf4")
 offset = Vector2(-7, -22)
 
-[node name="Stats" parent="." index="10"]
+[node name="Stats" parent="." index="9"]
 initiative = 55
+
+[node name="NavigationAgent2D" parent="." index="11"]
+debug_enabled = true
 
 [editable path="HitboxPivot/SwordHitbox"]
 [editable path="HitboxPivot/InteractRange"]
