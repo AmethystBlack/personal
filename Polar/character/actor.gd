@@ -60,7 +60,6 @@ func set_skin(value: Texture) -> void:
 func setFacing(value):
 	defaultFacing = value
 	if Engine.is_editor_hint():
-		print(_sprite)
 		match defaultFacing:
 			DIRECTIONS.DOWN:
 				_sprite.frame = 0
@@ -70,7 +69,6 @@ func setFacing(value):
 				_sprite.frame = 8
 			DIRECTIONS.UP:
 				_sprite.frame = 12
-		print(_sprite.frame)
 	else:
 		await ready
 		updateDefaultFacing()
