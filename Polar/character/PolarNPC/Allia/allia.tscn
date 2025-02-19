@@ -4,10 +4,10 @@
 
 [node name="Allia" instance=ExtResource("1_ac4du")]
 
-[node name="Stats" parent="." index="10"]
+[node name="Stats" parent="." index="9"]
 initiative = 35
 
-[node name="NavigationAgent2D" parent="." index="12"]
+[node name="NavigationAgent2D" parent="." index="11"]
 path_desired_distance = 20.0
 target_desired_distance = 10.0
 path_postprocessing = 0

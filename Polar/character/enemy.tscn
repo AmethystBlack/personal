@@ -26,11 +26,11 @@ skin = null
 [node name="Sprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_1law7")
 
-[node name="Interaction" parent="." index="2"]
-collision_layer = 0
-
-[node name="Hurtbox" parent="." index="7"]
+[node name="Hurtbox" parent="." index="6"]
 collision_mask = 8
+
+[node name="Stats" parent="." index="9"]
+max_health = 3
 
 [node name="WanderController" parent="." index="10" instance=ExtResource("4_r1xl5")]
 
@@ -48,8 +48,8 @@ collision_layer = 4
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_mubvd")
 
-[node name="Stats" parent="." index="13"]
-max_health = 3
+[node name="Interaction" parent="." index="15"]
+collision_layer = 0
 
 [editable path="HitboxPivot/SwordHitbox"]
 [editable path="HitboxPivot/InteractRange"]

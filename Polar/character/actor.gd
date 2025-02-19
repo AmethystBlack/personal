@@ -26,6 +26,8 @@ const ROLL_SPEED = 80
 enum DIRECTIONS { DOWN , LEFT , RIGHT , UP }
 @export var defaultFacing: DIRECTIONS : set = setFacing
 
+var mousedOver = false
+
 enum State {
 	IDLE,
 	MOVING,
@@ -70,7 +72,7 @@ func setFacing(value):
 				_sprite.frame = 8
 			DIRECTIONS.UP:
 				_sprite.frame = 12
-		print(_sprite.frame)
+		#print(_sprite.frame)
 	else:
 		await ready
 		updateDefaultFacing()
@@ -189,3 +191,11 @@ func updateDefaultFacing():
 		DIRECTIONS.UP:
 			faceUp()
 	
+
+
+func _on_interaction_mouse_entered() -> void:
+	mousedOver = true
+
+
+func _on_interaction_mouse_exited() -> void:
+	mousedOver = false
