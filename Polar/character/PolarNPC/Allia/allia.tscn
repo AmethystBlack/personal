@@ -13,7 +13,6 @@ target_desired_distance = 10.0
 path_postprocessing = 0
 simplify_path = false
 radius = 10.0
-debug_enabled = false
 
 [editable path="HitboxPivot/SwordHitbox"]
 [editable path="HitboxPivot/InteractRange"]

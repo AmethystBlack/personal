@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c20f0oad07t58"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://c20f0oad07t58"]
 
 [ext_resource type="Texture2D" uid="uid://cgr7y5o35rqe5" path="res://World/table/tileset_table.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dv0bco1nb3ymp" path="res://World/MuseumAtlas.png" id="2_vqcsq"]
+[ext_resource type="PackedScene" uid="uid://ctm4kg1bjttxr" path="res://maps/supply.tscn" id="3_vlxs2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_baaqb"]
 texture = ExtResource("1")
@@ -392,6 +393,9 @@ texture = ExtResource("2_vqcsq")
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_0qh1d"]
+scenes/1/scene = ExtResource("3_vlxs2")
+
 [resource]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
@@ -399,3 +403,4 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_baaqb")
 sources/1 = SubResource("TileSetAtlasSource_qru5k")
+sources/2 = SubResource("TileSetScenesCollectionSource_0qh1d")

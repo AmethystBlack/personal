@@ -48,6 +48,9 @@ collision_layer = 4
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_mubvd")
 
+[node name="NavigationAgent2D" parent="." index="14"]
+debug_enabled = true
+
 [node name="Interaction" parent="." index="15"]
 collision_layer = 0
 
