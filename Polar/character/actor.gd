@@ -6,6 +6,8 @@ class_name Actor
 
 const PlayerHurtSound = preload("res://character/player/player_hurt_sound.tscn")
 
+signal finishedPathing
+
 #const ACCELERATION = 300
 #const MAX_SPEED = 220
 const ROLL_SPEED = 80
@@ -117,7 +119,6 @@ func _on_hurtbox_area_entered(area):
 func _on_hurtbox_invincibility_ended():
 	blinkAnimationPlayer.play("Stop")
 
-
 func _on_hurtbox_invincibility_started():
 	blinkAnimationPlayer.play("Start")
 	
@@ -125,12 +126,6 @@ func path_to_cursor():
 	set_movement_target(get_global_mouse_position())
 	state = State.PATH
 	animationState.travel("Run")
-	
-func runInPlace():
-	animationState.travel("Run")
-	
-func idleInPlace():
-	animationState.travel("Idle")
 
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
@@ -139,6 +134,7 @@ func path_state(_delta):
 	if navigation_agent.is_navigation_finished():
 		state = State.MOVING
 		animationState.travel("Idle")
+		finishedPathing.emit()
 		return
 
 	var current_agent_position: Vector2 = global_position
@@ -170,8 +166,23 @@ func interactedWith():
 func faceReserved():
 	if reservedFacing != Vector2.ZERO:
 		updateFacing(reservedFacing)
+	
+func updateDefaultFacing():
+	match defaultFacing:
+		DIRECTIONS.DOWN:
+			faceDown()
+		DIRECTIONS.LEFT:
+			faceLeft()
+		DIRECTIONS.RIGHT:
+			faceRight()
+		DIRECTIONS.UP:
+			faceUp()
+	
 		
 ############## useful actor commands
+
+func stx(text):
+	h.stx(text, self)
 
 func faceLeft():
 	updateFacing(Vector2.LEFT)
@@ -187,19 +198,23 @@ func faceDown():
 	
 func faceCharacter(targetCharacter):
 	facePoint(targetCharacter.position)
+	
+func faceChar(targetCharacter): # alias
+	faceCharacter(targetCharacter)
 
 func facePoint(point: Vector2):
 	var destination = self.position.direction_to(point)
 	updateFacing(destination)
 	
-func updateDefaultFacing():
-	match defaultFacing:
-		DIRECTIONS.DOWN:
-			faceDown()
-		DIRECTIONS.LEFT:
-			faceLeft()
-		DIRECTIONS.RIGHT:
-			faceRight()
-		DIRECTIONS.UP:
-			faceUp()
+func runInPlace():
+	animationState.travel("Run")
 	
+func idleInPlace():
+	animationState.travel("Idle")
+	
+func moveTo(x,y):
+	var destination = Vector2(x, y)
+	set_movement_target(destination)
+	state = State.PATH
+	animationState.travel("Run")
+	await finishedPathing

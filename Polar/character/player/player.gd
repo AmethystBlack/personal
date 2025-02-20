@@ -81,7 +81,8 @@ func _on_player_control_actor_misc() -> void:
 
 func process_misc():
 	#interact()
-	h.actors["flaw"].path_to_cursor()
+	h.map.introScene()
+	#h.actors["flaw"].path_to_cursor()
 	#h.EnsembleFace()
 	
 func interact():

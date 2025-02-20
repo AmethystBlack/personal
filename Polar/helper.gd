@@ -31,22 +31,20 @@ func setShortcuts():
 func EnsembleFace():
 	var destination = World.get_global_mouse_position()
 	for npc in Party:
-		var interval = EnembleInterval(npc)
+		var interval = EnsembleInterval(npc)
 		var tween = create_tween()
 		tween.tween_interval(interval)
 		tween.tween_callback(npc.facePoint.bind(destination))
 			
 func EnsembleMove():
 	for npc in Party:
-		var interval = EnembleInterval(npc)
+		var interval = EnsembleInterval(npc)
 		var tween = create_tween()
 		tween.tween_interval(interval)
 		tween.tween_callback(npc.path_to_cursor)
 		
-func EnembleInterval(npc,act = false):
+func EnsembleInterval(npc,act = false):
 		# ideally north should be the first to react to the sound but is much slower to act
 		var init = npc.stats.roll_initiative()
 		var interval = (100 - init) / 50 # this last number effectively decides the Scale of the reactions
 		return interval
-		
-		print("oh shit for real")

@@ -38,10 +38,10 @@ func createPlayer():
 	var newPlayerObj = Player.instantiate()
 	newPlayerObj.position = player_start.position
 	newPlayerObj.skin = playerGraphic
-	$ObjectPlane.add_child(newPlayerObj)
+	$ObjectPlane/Actors.add_child(newPlayerObj)
 
 func subscribeActors():
-	var actorNodes = $ObjectPlane.get_children()
+	var actorNodes = $ObjectPlane/Actors.get_children()
 	for actor in actorNodes:
 		var lowerName = actor.name.to_lower()
 		actors[lowerName] = actor

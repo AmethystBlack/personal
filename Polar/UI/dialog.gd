@@ -5,7 +5,7 @@ var speaker = null
 
 @onready var text_obj = get_node("%Text")
 @onready var name_box = $NameBox
-@onready var name_text = get_node("%NameText")
+@onready var name_text = get_node_or_null("%NameText")
 @onready var timer = get_node_or_null(^"Timer")
 
 var fullyTyped = false

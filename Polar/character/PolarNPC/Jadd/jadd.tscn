@@ -13,9 +13,6 @@ offset = Vector2(-7, -22)
 [node name="Stats" parent="." index="9"]
 initiative = 55
 
-[node name="NavigationAgent2D" parent="." index="11"]
-debug_enabled = true
-
 [editable path="HitboxPivot/SwordHitbox"]
 [editable path="HitboxPivot/InteractRange"]
 [editable path="Hurtbox"]
