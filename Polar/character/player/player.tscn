@@ -647,13 +647,6 @@ libraries = {
 "": SubResource("AnimationLibrary_sloyf")
 }
 
-[node name="SwordHitbox" parent="HitboxPivot" index="0"]
-position = Vector2(14, -6.00005)
-
-[node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
-visible = true
-position = Vector2(-3.99998, 6.00001)
-
 [node name="CollisionShape2D" parent="HitboxPivot/InteractRange" index="0"]
 visible = true
 position = Vector2(-6, 6.99997)
@@ -665,22 +658,22 @@ max_health = 5
 acceleration = 300
 max_speed = 220
 
-[node name="CameraControl" type="RemoteTransform2D" parent="." index="10"]
-script = ExtResource("10_4i6nx")
-
-[node name="PlayerControl" type="Control" parent="." index="11"]
+[node name="PlayerControl" type="Control" parent="." index="10"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_uxiqm")
 
+[node name="CameraControl" type="RemoteTransform2D" parent="PlayerControl" index="0"]
+script = ExtResource("10_4i6nx")
+
 [connection signal="area_entered" from="HitboxPivot/InteractRange" to="." method="_on_interact_range_area_entered"]
 [connection signal="actor_attacks" from="PlayerControl" to="." method="_on_player_control_actor_attacks"]
 [connection signal="actor_dodges" from="PlayerControl" to="." method="_on_player_control_actor_dodges"]
 [connection signal="actor_misc" from="PlayerControl" to="." method="_on_player_control_actor_misc"]
 
-[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/AttackHitbox"]
 [editable path="HitboxPivot/InteractRange"]
 [editable path="Hurtbox"]
 [editable path="SoftCollision"]

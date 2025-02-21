@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://da24yl2y8xbyy"]
+[gd_scene load_steps=61 format=3 uid="uid://da24yl2y8xbyy"]
 
 [ext_resource type="Script" path="res://character/actor.gd" id="1_rvb4x"]
 [ext_resource type="Texture2D" uid="uid://160kmimkw6yj" path="res://character/trchar025.png" id="2_c7p8k"]
@@ -104,7 +104,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxPivot/SwordHitbox/CollisionShape2D:disabled")
+tracks/1/path = NodePath("HitboxPivot/AttackHitbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -112,6 +112,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_4mxbw"]
@@ -183,8 +195,76 @@ tracks/0/keys = {
 "values": [12, 13, 14, 15]
 }
 
+[sub_resource type="Animation" id="Animation_j4cno"]
+resource_name = "AttackDown"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 6), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jpfw5"]
+resource_name = "AttackLeft"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-6, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_erkbb"]
+resource_name = "AttackRight"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(6, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rgije"]
+resource_name = "AttackUp"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ayke2"]
 _data = {
+"AttackDown": SubResource("Animation_j4cno"),
+"AttackLeft": SubResource("Animation_jpfw5"),
+"AttackRight": SubResource("Animation_erkbb"),
+"AttackUp": SubResource("Animation_rgije"),
 "IdleDown": SubResource("Animation_lkf08"),
 "IdleLeft": SubResource("Animation_n8v8i"),
 "IdleRight": SubResource("Animation_b3mmc"),
@@ -334,8 +414,8 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(6, -45.8703)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mn2o2"]
-radius = 9.0
-height = 20.0
+radius = 7.0
+height = 18.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4wpnt"]
 radius = 4.0
@@ -379,7 +459,7 @@ libraries = {
 active = false
 tree_root = SubResource("AnimationNodeStateMachine_0yf2i")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Attack/blend_position = Vector2(0, 1)
+parameters/Attack/blend_position = Vector2(-0.000881076, -1.08683)
 parameters/Idle/blend_position = Vector2(0, 1)
 parameters/Roll/blend_position = Vector2(0, 1)
 parameters/Run/blend_position = Vector2(0, 1)
@@ -388,14 +468,13 @@ parameters/Run/blend_position = Vector2(0, 1)
 position = Vector2(0, -6)
 rotation = 1.5708
 
-[node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource("7_w6ww0")]
+[node name="AttackHitbox" parent="HitboxPivot" instance=ExtResource("7_w6ww0")]
 position = Vector2(14, -7)
 collision_layer = 8
 script = ExtResource("8_0v0kl")
 
-[node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
-visible = false
-position = Vector2(-4, 6.99996)
+[node name="CollisionShape2D" parent="HitboxPivot/AttackHitbox" index="0"]
+position = Vector2(-8, 6.99998)
 shape = SubResource("CapsuleShape2D_mn2o2")
 disabled = true
 
@@ -452,7 +531,7 @@ shape = SubResource("CapsuleShape2D_td4ak")
 [connection signal="mouse_entered" from="Interaction" to="." method="_on_interaction_mouse_entered"]
 [connection signal="mouse_exited" from="Interaction" to="." method="_on_interaction_mouse_exited"]
 
-[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/AttackHitbox"]
 [editable path="HitboxPivot/InteractRange"]
 [editable path="Hurtbox"]
 [editable path="SoftCollision"]

@@ -61,3 +61,7 @@ func EnsembleInterval(npc,act = false):
 		var init = npc.stats.roll_initiative()
 		var interval = (100 - init) / 50 # this last number effectively decides the Scale of the reactions
 		return interval
+
+func EnsembleDirectable(canDirect):
+	for npc in Party:
+		npc.directable = canDirect

@@ -8,13 +8,12 @@ var moveVector : Vector2 = Vector2.ZERO :
 		moveVector = value
 		updateVectorAnims(moveVector)
 
-@onready var swordHitbox = $HitboxPivot/SwordHitbox
+@onready var swordHitbox = $HitboxPivot/AttackHitbox
 @onready var interactHitbox = $HitboxPivot/InteractRange/CollisionShape2D
 #@onready var control = $PlayerControl
 
 
 func _ready():
-	randomize()
 	h.HUD.healthUi.setupHP(stats)
 	self.stats.connect("no_health", queue_free)
 	animationTree.active = true

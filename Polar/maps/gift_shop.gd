@@ -33,7 +33,10 @@ func interactList(targetEvent):
 			await h.wait(1)
 			h.HUD.fadeIn(2)
 			await h.stx("um?", this)
-			
+		"jadd":
+			h.EnsembleDirectable(true)	
+		"allia":
+			h.EnsembleDirectable(false)
 			
 func introScene():
 	

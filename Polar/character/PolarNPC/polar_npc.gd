@@ -2,6 +2,8 @@
 extends Actor
 class_name PolarNPC
 
+var directable = true
+
 func _ready():
 	super._ready()
 	if not Engine.is_editor_hint():
