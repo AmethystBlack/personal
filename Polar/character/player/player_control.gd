@@ -13,8 +13,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	player.moveVector = getInputVector()
-	otherInputs()
+	if h.gameState != h.game.SCENE:
+		player.moveVector = getInputVector()
+		otherInputs()
 
 func getInputVector():
 	var input_vector = Vector2.ZERO

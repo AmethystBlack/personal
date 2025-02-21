@@ -53,7 +53,9 @@ func interact(targetEvent):
 	if char.has_method("interactedWith"):
 		char.interactedWith()
 	targetEvent = targetEvent.to_lower()
+	h.changeGameState(h.game.SCENE)
 	await interactList(targetEvent)
+	h.gameState = h.lastState
 	endInteraction(char)
 
 func interactList(targetEvent):

@@ -36,6 +36,10 @@ func interactList(targetEvent):
 			
 			
 func introScene():
+	
+			
+			h.changeGameState(h.game.SCENE)
+	
 			await Evristt.moveTo(242,251)
 			await h.tx("[EVRISTT] Grab a chair or something-- block the door!")
 			Flaw.faceChar(Evristt)
@@ -162,6 +166,6 @@ func introScene():
 			await h.stx("[MAERUNN] Don't be a hero, Evristt!")
 			await h.stx("[MAERUNN] You can buy us time, but you saw that train-- There might as well be no end to those guys!")
 			
-			
+			h.gameState = h.lastState
 				
 			

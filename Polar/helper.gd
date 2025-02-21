@@ -9,6 +9,19 @@ var Party = []
 #@onready var HUD = get_tree().get_current_scene().get_node("%HUD")
 #@onready var Player = get_tree().get_current_scene().get_node("%Player")
 
+enum game {
+	BASE,
+	EXPLORE,
+	SCENE,
+}
+var gameState = game.BASE
+var lastState = game.BASE
+
+func changeGameState(state):
+	if gameState != game.SCENE:
+		lastState = gameState
+	gameState = state
+
 var mapOverride = null
 
 # just some shortcuts
