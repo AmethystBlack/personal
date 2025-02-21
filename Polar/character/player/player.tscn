@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://b6m36di04f8hp"]
 
-[ext_resource type="Script" path="res://character/player/player.gd" id="2_n2gml"]
+[ext_resource type="Script" path="res://character/PolarNPC/polar_npc.gd" id="2_vqtsw"]
 [ext_resource type="PackedScene" uid="uid://da24yl2y8xbyy" path="res://character/actor.tscn" id="3_elef3"]
 [ext_resource type="AudioStream" uid="uid://cn73eae8u2oga" path="res://audio/Swipe.wav" id="3_gklxc"]
 [ext_resource type="Shader" path="res://WhiteColor.gdshader" id="3_j8rm3"]
@@ -634,7 +634,7 @@ radius = 5.0
 height = 10.0
 
 [node name="Player" instance=ExtResource("3_elef3")]
-script = ExtResource("2_n2gml")
+script = ExtResource("2_vqtsw")
 skin = null
 
 [node name="Sprite2D" parent="." index="1"]
@@ -658,7 +658,7 @@ max_health = 5
 acceleration = 300
 max_speed = 220
 
-[node name="PlayerControl" type="Control" parent="." index="10"]
+[node name="PlayerControl" type="Control" parent="." index="13"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

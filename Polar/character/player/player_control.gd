@@ -8,7 +8,8 @@ signal actor_misc
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	#h.HUD.healthUi.setupHP(player.stats)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,7 +34,31 @@ func otherInputs():
 		
 	if Input.is_action_just_pressed("attack"):
 		actor_attacks.emit()
+		player.state = player.State.ATTACK
 	elif Input.is_action_just_pressed("roll"):
 		actor_dodges.emit()
+		player.state = player.State.ROLL
 	elif Input.is_action_just_pressed("misc"):
 		actor_misc.emit()
+		process_misc()
+		
+		
+func process_misc():
+	#interact()
+	h.map.introScene()
+	
+func interact():
+	player.interactHitbox.disabled = false
+	await get_tree().create_timer(0.1).timeout
+	player.interactHitbox.disabled = true
+
+func _on_interact_range_area_entered(area: Area2D) -> void:
+	if area.get_parent() == self:
+		return
+		
+	var foundNode = area.get_parent()
+	#var targetActor = h.actors["NPC"]
+	if foundNode.has_method("interact"):
+		foundNode.interact()
+	else:
+		h.map.interact(foundNode.name)
