@@ -54,7 +54,7 @@ debug_enabled = true
 [node name="Interaction" parent="." index="15"]
 collision_layer = 0
 
-[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/AttackHitbox"]
 [editable path="HitboxPivot/InteractRange"]
 [editable path="Hurtbox"]
 [editable path="PlayerDetectionZone"]

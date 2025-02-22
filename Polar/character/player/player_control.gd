@@ -9,11 +9,13 @@ signal actor_misc
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#h.HUD.healthUi.setupHP(player.stats)
-	pass
+	player.state = player.State.MOVING
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if h.HUD == null:
+		return
 	if h.gameState != h.game.SCENE:
 		player.moveVector = getInputVector()
 		otherInputs()

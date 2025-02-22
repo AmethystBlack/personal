@@ -154,7 +154,7 @@ func updateDefaultFacing():
 	
 func move_state(delta):	
 	if moveVector != Vector2.ZERO:
-		velocity = velocity.move_toward(moveVector * stats.max_speed, (stats.acceleration * delta))
+		velocity = getVelocity(moveVector, delta)
 		updateFacing(velocity)
 	else: 
 		animationState.travel("Idle")
@@ -169,7 +169,7 @@ func path_to_cursor():
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 	
-func path_state(_delta):
+func path_state(delta):
 	if navigation_agent.is_navigation_finished():
 		state = State.MOVING
 		animationState.travel("Idle")
@@ -178,11 +178,30 @@ func path_state(_delta):
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
 	#print(next_path_position)
-	velocity = current_agent_position.direction_to(next_path_position) * stats.max_speed
+	var moveToward = current_agent_position.direction_to(next_path_position)
+	velocity = getVelocity(moveToward, delta)
 	updateFacing(velocity)
 	if softCollision.is_colliding():
-		velocity += softCollision.get_push_vector() * _delta * 500
+		velocity += softCollision.get_push_vector() * delta * 500
 	move_and_slide()
+	
+func getVelocity(direction, delta):
+	var acceleration = getAcceleration(delta)
+	var velo = direction * stats.max_speed
+	var velo2 = velocity.move_toward(direction * stats.max_speed, acceleration)
+	
+	# jank reduction act of 2025
+	if abs(velo2.x) > abs(velo.x):
+		velo2.x = velo.x
+	if abs(velo2.y) > abs(velo.y):
+		velo2.y = velo.y
+		
+	return velo2
+	
+func getAcceleration(delta):
+	var acceleration = stats.acceleration * delta
+	acceleration *= 10
+	return acceleration
 	
 ##❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆
 ##❅❆❅	Damage and Interaction
