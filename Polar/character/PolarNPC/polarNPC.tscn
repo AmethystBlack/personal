@@ -15,7 +15,7 @@ offset = Vector2(-8, -21)
 [node name="HitboxPivot" parent="." index="5"]
 visible = false
 
-[editable path="HitboxPivot/SwordHitbox"]
+[editable path="HitboxPivot/AttackHitbox"]
 [editable path="HitboxPivot/InteractRange"]
 [editable path="Hurtbox"]
 [editable path="SoftCollision"]

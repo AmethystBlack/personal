@@ -8,12 +8,12 @@ class_name Actor
 
 @onready var stats = $Stats
 @onready var animationPlayer = $AnimationPlayer
-@onready var blinkAnimationPlayer = $BlinkAnimationPlayer
-@onready var animationTree = $AnimationTree
+@onready var blinkAnimationPlayer = $AnimationPlayer/BlinkAnimationPlayer
+@onready var animationTree = $AnimationPlayer/AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
-@onready var hurtbox = $Hurtbox
+@onready var hurtbox = $PhysicalCollision/Hurtbox
 @onready var softCollision = $SoftCollision
-@onready var navigation_agent = $NavigationAgent2D
+@onready var navigation_agent = $PhysicalCollision/NavigationAgent2D
 @onready var hitbox_pivot = $HitboxPivot
 @onready var _sprite: Sprite2D = $Sprite2D
 @onready var attackHitbox = $HitboxPivot/AttackHitbox

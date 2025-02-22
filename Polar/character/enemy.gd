@@ -75,6 +75,8 @@ func pick_random_state(state_list):
 
 func _on_hurtbox_area_entered(area):
 	stats.health -= area.damage
+	print(area.name)
+	print(area.get_parent())
 	velocity = area.knockback_vector * stats.knockback_distance
 	hurtbox.start_invincibility(0.5)
 	hurtbox.create_hit_effect()

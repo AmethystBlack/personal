@@ -23,40 +23,34 @@ collision_layer = 1
 script = ExtResource("2_ivsh4")
 skin = null
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_1law7")
 
-[node name="Hurtbox" parent="." index="6"]
-collision_mask = 8
-
-[node name="Stats" parent="." index="9"]
+[node name="Stats" parent="." index="4"]
 max_health = 3
 
-[node name="WanderController" parent="." index="10" instance=ExtResource("4_r1xl5")]
+[node name="Interaction" parent="." index="6"]
+collision_layer = 0
 
-[node name="PlayerDetectionZone" parent="." index="11" instance=ExtResource("5_wjjoc")]
+[node name="WanderController" parent="." index="7" instance=ExtResource("4_r1xl5")]
+
+[node name="PlayerDetectionZone" parent="." index="8" instance=ExtResource("5_wjjoc")]
 collision_layer = 0
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
 visible = false
 shape = SubResource("CircleShape2D_x2226")
 
-[node name="Hitbox" parent="." index="12" instance=ExtResource("6_y58bq")]
+[node name="Hitbox" parent="." index="9" instance=ExtResource("6_y58bq")]
 collision_layer = 4
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_mubvd")
 
-[node name="NavigationAgent2D" parent="." index="14"]
-debug_enabled = true
-
-[node name="Interaction" parent="." index="15"]
-collision_layer = 0
-
+[editable path="PhysicalCollision/Hurtbox"]
 [editable path="HitboxPivot/AttackHitbox"]
 [editable path="HitboxPivot/InteractRange"]
-[editable path="Hurtbox"]
+[editable path="SoftCollision"]
 [editable path="PlayerDetectionZone"]
 [editable path="Hitbox"]
-[editable path="SoftCollision"]

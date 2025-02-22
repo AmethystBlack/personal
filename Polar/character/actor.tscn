@@ -19,6 +19,10 @@ shader_parameter/active = false
 radius = 2.0
 height = 8.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4wpnt"]
+radius = 4.0
+height = 14.0
+
 [sub_resource type="Animation" id="Animation_j4cno"]
 resource_name = "AttackDown"
 length = 0.2
@@ -521,10 +525,6 @@ graph_offset = Vector2(6, -45.8703)
 radius = 7.0
 height = 18.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4wpnt"]
-radius = 4.0
-height = 14.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_uhepv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_td4ak"]
@@ -536,10 +536,6 @@ collision_layer = 3
 script = ExtResource("1_rvb4x")
 skin = ExtResource("2_c7p8k")
 
-[node name="ShadowSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
-texture = ExtResource("3_nvl4u")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_eu3ny")
 texture = ExtResource("2_c7p8k")
@@ -548,25 +544,53 @@ offset = Vector2(-8, -20)
 hframes = 4
 vframes = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="ShadowSprite" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0, -1)
+texture = ExtResource("3_nvl4u")
+
+[node name="PhysicalCollision" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, -2)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_hcbah")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="PhysicalCollision"]
+path_desired_distance = 8.0
+target_desired_distance = 2.0
+path_postprocessing = 1
+simplify_path = true
+radius = 12.0
+debug_enabled = true
+
+[node name="Hurtbox" parent="PhysicalCollision" instance=ExtResource("9_b1ox4")]
+position = Vector2(-2, -7.23998e-06)
+rotation = 1.5708
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="PhysicalCollision/Hurtbox" index="0"]
+visible = false
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_4wpnt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ayke2")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
 active = false
+root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_0yf2i")
-anim_player = NodePath("../AnimationPlayer")
+anim_player = NodePath("..")
 parameters/Attack/blend_position = Vector2(-0.000881076, -1.08683)
 parameters/Idle/blend_position = Vector2(0, 1)
 parameters/Roll/blend_position = Vector2(0, 1)
 parameters/Run/blend_position = Vector2(0, 1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationPlayer"]
+
+[node name="BlinkAnimationPlayer" parent="AnimationPlayer" instance=ExtResource("9_4016u")]
+root_node = NodePath("../..")
 
 [node name="HitboxPivot" type="Marker2D" parent="."]
 position = Vector2(0, -6)
@@ -593,18 +617,6 @@ position = Vector2(-7, 6.99997)
 shape = SubResource("CapsuleShape2D_mn2o2")
 disabled = true
 
-[node name="Hurtbox" parent="." instance=ExtResource("9_b1ox4")]
-collision_mask = 4
-
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
-visible = false
-position = Vector2(0, -3)
-shape = SubResource("CapsuleShape2D_4wpnt")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-
-[node name="BlinkAnimationPlayer" parent="." instance=ExtResource("9_4016u")]
-
 [node name="Stats" parent="." instance=ExtResource("9_n3prt")]
 
 [node name="SoftCollision" parent="." instance=ExtResource("10_k7a2a")]
@@ -612,14 +624,6 @@ shape = SubResource("CapsuleShape2D_4wpnt")
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 visible = false
 shape = SubResource("CircleShape2D_uhepv")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 8.0
-target_desired_distance = 2.0
-path_postprocessing = 1
-simplify_path = true
-radius = 12.0
-debug_enabled = true
 
 [node name="Interaction" type="Area2D" parent="."]
 collision_layer = 2
@@ -630,13 +634,13 @@ visible = false
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_td4ak")
 
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
-[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
+[connection signal="area_entered" from="PhysicalCollision/Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="PhysicalCollision/Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="PhysicalCollision/Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
 [connection signal="mouse_entered" from="Interaction" to="." method="_on_interaction_mouse_entered"]
 [connection signal="mouse_exited" from="Interaction" to="." method="_on_interaction_mouse_exited"]
 
+[editable path="PhysicalCollision/Hurtbox"]
 [editable path="HitboxPivot/AttackHitbox"]
 [editable path="HitboxPivot/InteractRange"]
-[editable path="Hurtbox"]
 [editable path="SoftCollision"]
