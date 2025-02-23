@@ -18,8 +18,8 @@ func _ready() -> void:
 		loadMainScene()
 		return
 		
-	if player_start != null:
-		createPlayer()
+	#if player_start != null:
+		#createPlayer()
 	subscribeActors()
 	h.map = self
 	

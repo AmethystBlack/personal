@@ -74,7 +74,10 @@ func pick_random_state(state_list):
 	return state_list.pop_front()
 
 func _on_hurtbox_area_entered(area):
+	#if area.get_parent() == self:
+		#return
 	stats.health -= area.damage
+	print(self.name)
 	print(area.name)
 	print(area.get_parent())
 	velocity = area.knockback_vector * stats.knockback_distance

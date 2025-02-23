@@ -8,14 +8,14 @@
 script = ExtResource("2_287mb")
 skin = ExtResource("3_ok8k0")
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_ok8k0")
 offset = Vector2(-8, -21)
 
-[node name="HitboxPivot" parent="." index="5"]
+[node name="HitboxPivot" parent="." index="3"]
 visible = false
 
+[editable path="PhysicalCollision/Hurtbox"]
 [editable path="HitboxPivot/AttackHitbox"]
 [editable path="HitboxPivot/InteractRange"]
-[editable path="Hurtbox"]
 [editable path="SoftCollision"]

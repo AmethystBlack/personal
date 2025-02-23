@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://pl4hj0pbb0lx"]
+[gd_scene load_steps=20 format=4 uid="uid://pl4hj0pbb0lx"]
 
 [ext_resource type="PackedScene" uid="uid://b0tolekoe2wyv" path="res://maps/mapBase.tscn" id="1_5fy6g"]
 [ext_resource type="Script" path="res://maps/gift_shop.gd" id="2_3s7q7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bv6t84rhuvugj" path="res://character/PolarNPC/Brite/brite.tscn" id="4_vvdiq"]
 [ext_resource type="PackedScene" uid="uid://dv4cnppkqkhks" path="res://character/PolarNPC/Evristt/evristt.tscn" id="5_k307a"]
 [ext_resource type="PackedScene" uid="uid://csvuk4q1vpfyh" path="res://character/PolarNPC/Flaw/flaw.tscn" id="6_d30u8"]
+[ext_resource type="PackedScene" uid="uid://dulrgm0mecrld" path="res://character/player/player_control.tscn" id="7_hodsc"]
 [ext_resource type="PackedScene" uid="uid://d4em5h36oqqlm" path="res://character/PolarNPC/Jadd/jadd.tscn" id="7_igjdv"]
 [ext_resource type="PackedScene" uid="uid://dg1vgh6e663la" path="res://character/PolarNPC/Kie/kie.tscn" id="8_s2usi"]
 [ext_resource type="PackedScene" uid="uid://bi7v3cobide5n" path="res://character/PolarNPC/Lee/lee.tscn" id="9_ybnlt"]
@@ -51,6 +52,8 @@ defaultFacing = 2
 [node name="Evristt" parent="ObjectPlane/Actors" index="3" instance=ExtResource("5_k307a")]
 position = Vector2(241, 303)
 defaultFacing = 3
+
+[node name="PlayerControl" parent="ObjectPlane/Actors/Evristt" index="14" instance=ExtResource("7_hodsc")]
 
 [node name="Flaw" parent="ObjectPlane/Actors" index="4" instance=ExtResource("6_d30u8")]
 position = Vector2(290, 185)

@@ -598,7 +598,7 @@ rotation = 1.5708
 
 [node name="AttackHitbox" parent="HitboxPivot" instance=ExtResource("7_w6ww0")]
 position = Vector2(14, -7)
-collision_layer = 8
+collision_layer = 12
 script = ExtResource("8_0v0kl")
 
 [node name="CollisionShape2D" parent="HitboxPivot/AttackHitbox" index="0"]
