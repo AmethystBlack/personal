@@ -532,7 +532,8 @@ radius = 7.0
 height = 20.0
 
 [node name="Actor" type="CharacterBody2D"]
-collision_layer = 3
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_rvb4x")
 skin = ExtResource("2_c7p8k")
 
@@ -565,6 +566,7 @@ debug_enabled = true
 [node name="Hurtbox" parent="PhysicalCollision" instance=ExtResource("9_b1ox4")]
 position = Vector2(-2, -7.23998e-06)
 rotation = 1.5708
+collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="PhysicalCollision/Hurtbox" index="0"]
@@ -598,7 +600,7 @@ rotation = 1.5708
 
 [node name="AttackHitbox" parent="HitboxPivot" instance=ExtResource("7_w6ww0")]
 position = Vector2(14, -7)
-collision_layer = 12
+collision_layer = 4
 script = ExtResource("8_0v0kl")
 
 [node name="CollisionShape2D" parent="HitboxPivot/AttackHitbox" index="0"]
@@ -608,7 +610,8 @@ disabled = true
 
 [node name="InteractRange" parent="HitboxPivot" instance=ExtResource("7_w6ww0")]
 position = Vector2(14, -7)
-collision_mask = 2
+collision_layer = 8
+collision_mask = 8
 script = null
 
 [node name="CollisionShape2D" parent="HitboxPivot/InteractRange" index="0"]
@@ -620,14 +623,16 @@ disabled = true
 [node name="Stats" parent="." instance=ExtResource("9_n3prt")]
 
 [node name="SoftCollision" parent="." instance=ExtResource("10_k7a2a")]
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 visible = false
 shape = SubResource("CircleShape2D_uhepv")
 
 [node name="Interaction" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
 visible = false

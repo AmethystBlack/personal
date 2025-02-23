@@ -21,26 +21,32 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAEAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAE
 
 [node name="Enemy" parent="ObjectPlane" index="0" instance=ExtResource("2_yc8tv")]
 position = Vector2(73, 418)
+collision_mask = 1
 skin = ExtResource("3_kmkwg")
 
 [node name="Enemy2" parent="ObjectPlane" index="1" instance=ExtResource("2_yc8tv")]
 position = Vector2(230, 324)
+collision_mask = 1
 skin = ExtResource("3_kmkwg")
 
 [node name="Enemy3" parent="ObjectPlane" index="2" instance=ExtResource("2_yc8tv")]
 position = Vector2(347, 431)
+collision_mask = 1
 skin = ExtResource("3_kmkwg")
 
 [node name="Enemy4" parent="ObjectPlane" index="3" instance=ExtResource("2_yc8tv")]
 position = Vector2(92, 340)
+collision_mask = 1
 skin = ExtResource("3_kmkwg")
 
 [node name="Enemy5" parent="ObjectPlane" index="4" instance=ExtResource("2_yc8tv")]
 position = Vector2(84, 532)
+collision_mask = 1
 skin = ExtResource("3_kmkwg")
 
 [node name="Enemy6" parent="ObjectPlane" index="5" instance=ExtResource("2_yc8tv")]
 position = Vector2(216, 462)
+collision_mask = 1
 skin = ExtResource("3_kmkwg")
 
 [node name="Evristt" parent="ObjectPlane/Actors" index="0" instance=ExtResource("4_iyq5f")]

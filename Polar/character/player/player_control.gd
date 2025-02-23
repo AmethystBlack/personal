@@ -46,8 +46,8 @@ func otherInputs():
 		
 		
 func process_misc():
-	#interact()
-	h.map.introScene()
+	interact()
+	#h.map.introScene()
 	
 func interact():
 	player.interactHitbox.disabled = false
