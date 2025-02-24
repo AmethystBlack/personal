@@ -2,7 +2,7 @@ extends Map
 
 
 
-func interactList(targetEvent):
+func interactList(targetEvent,speaker):
 	pass
 
 

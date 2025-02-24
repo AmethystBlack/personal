@@ -47,18 +47,18 @@ func subscribeActors():
 		actors[lowerName] = actor
 	h.actors = actors
 
-func interact(targetEvent):
+func interact(targetEvent,speaker):
 	targetEvent = targetEvent.to_lower()
 	var char = h.actors[targetEvent]
 	if char.has_method("interactedWith"):
-		char.interactedWith()
+		char.interactedWith(speaker)
 	targetEvent = targetEvent.to_lower()
 	h.changeGameState(h.game.SCENE)
-	await interactList(targetEvent)
+	await interactList(targetEvent,speaker)
 	h.gameState = h.lastState
 	endInteraction(char)
 
-func interactList(targetEvent):
+func interactList(targetEvent,speaker):
 	end(targetEvent)
 	
 func autoplay():

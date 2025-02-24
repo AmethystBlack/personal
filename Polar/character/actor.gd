@@ -18,6 +18,7 @@ class_name Actor
 @onready var _sprite: Sprite2D = $Sprite2D
 @onready var attackHitbox = $HitboxPivot/AttackHitbox
 @onready var interactHitbox = $HitboxPivot/InteractRange/CollisionShape2D
+@onready var interactReceiver = $HitboxPivot/InteractRange
 
 enum State {
 	IDLE,
@@ -215,9 +216,9 @@ func takeDamage(area):
 		var damageSound = DamageSound.instantiate()
 		get_tree().current_scene.add_child(damageSound)
 			
-func interactedWith():
+func interactedWith(speaker):
 	reservedFacing = facingVector
-	faceCharacter(h.actors["player"])
+	faceCharacter(speaker)
 	
 func attack_state(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, (stats.friction/2) * delta)
@@ -280,3 +281,7 @@ func moveTo(x,y):
 	state = State.PATH
 	animationState.travel("Run")
 	await finishedPathing
+
+#
+#func _on_interact_range_area_entered(area: Area2D) -> void:
+	#pass # Replace with function body.

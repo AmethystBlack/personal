@@ -12,9 +12,6 @@ skin = ExtResource("3_ok8k0")
 texture = ExtResource("3_ok8k0")
 offset = Vector2(-8, -21)
 
-[node name="HitboxPivot" parent="." index="3"]
-visible = false
-
 [editable path="PhysicalCollision/Hurtbox"]
 [editable path="HitboxPivot/AttackHitbox"]
 [editable path="HitboxPivot/InteractRange"]

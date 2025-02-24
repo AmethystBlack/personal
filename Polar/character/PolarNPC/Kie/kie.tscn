@@ -6,14 +6,17 @@
 [node name="Kie" instance=ExtResource("1_1lk4q")]
 skin = ExtResource("2_vsvjc")
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_vsvjc")
 offset = Vector2(-8, -24)
 
-[node name="Stats" parent="." index="10"]
+[node name="CollisionShape2D" parent="PhysicalCollision/Hurtbox" index="0"]
+disabled = true
+
+[node name="Stats" parent="." index="4"]
 initiative = 80
 
-[editable path="HitboxPivot/SwordHitbox"]
+[editable path="PhysicalCollision/Hurtbox"]
+[editable path="HitboxPivot/AttackHitbox"]
 [editable path="HitboxPivot/InteractRange"]
-[editable path="Hurtbox"]
 [editable path="SoftCollision"]

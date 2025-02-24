@@ -9,8 +9,12 @@ signal actor_misc
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#h.HUD.healthUi.setupHP(player.stats)
+	
 	player.state = player.State.MOVING
-
+	await player.ready
+	player.interactReceiver.area_entered.connect(_on_interact_range_area_entered)
+	print("A cmon")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -55,12 +59,12 @@ func interact():
 	player.interactHitbox.disabled = true
 
 func _on_interact_range_area_entered(area: Area2D) -> void:
-	if area.get_parent() == self:
-		return
+	print(area)
+	#if area.get_parent() == self:
+		#return
 		
 	var foundNode = area.get_parent()
-	#var targetActor = h.actors["NPC"]
 	if foundNode.has_method("interact"):
-		foundNode.interact()
+		foundNode.interact(player)
 	else:
-		h.map.interact(foundNode.name)
+		h.map.interact(foundNode.name,player)

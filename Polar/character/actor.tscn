@@ -610,12 +610,10 @@ disabled = true
 
 [node name="InteractRange" parent="HitboxPivot" instance=ExtResource("7_w6ww0")]
 position = Vector2(14, -7)
-collision_layer = 8
 collision_mask = 8
 script = null
 
 [node name="CollisionShape2D" parent="HitboxPivot/InteractRange" index="0"]
-visible = false
 position = Vector2(-7, 6.99997)
 shape = SubResource("CapsuleShape2D_mn2o2")
 disabled = true
@@ -630,20 +628,19 @@ collision_mask = 32
 visible = false
 shape = SubResource("CircleShape2D_uhepv")
 
-[node name="Interaction" type="Area2D" parent="."]
+[node name="InteractReceiver" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 8
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractReceiver"]
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_td4ak")
 
 [connection signal="area_entered" from="PhysicalCollision/Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="PhysicalCollision/Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
 [connection signal="invincibility_started" from="PhysicalCollision/Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
-[connection signal="mouse_entered" from="Interaction" to="." method="_on_interaction_mouse_entered"]
-[connection signal="mouse_exited" from="Interaction" to="." method="_on_interaction_mouse_exited"]
+[connection signal="mouse_entered" from="InteractReceiver" to="." method="_on_interaction_mouse_entered"]
+[connection signal="mouse_exited" from="InteractReceiver" to="." method="_on_interaction_mouse_exited"]
 
 [editable path="PhysicalCollision/Hurtbox"]
 [editable path="HitboxPivot/AttackHitbox"]
