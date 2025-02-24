@@ -30,6 +30,7 @@ enum State {
 var state = State.IDLE
 
 const DamageSound = preload("res://character/player/player_hurt_sound.tscn")
+const DeathEffect = preload("res://Effects/enemy_death_effect.tscn")
 
 signal finishedPathing
 
@@ -85,7 +86,7 @@ func setFacing(value):
 ##❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆
 
 func _ready():
-	self.stats.connect("no_health", queue_free)
+	self.stats.connect("no_health", die)
 	if not Engine.is_editor_hint():
 		animationTree.active = true
 	updateDefaultFacing()
@@ -211,6 +212,7 @@ func getAcceleration(delta):
 func takeDamage(area):
 	if hurtbox.invincible == false:
 		stats.health -= area.damage
+		velocity = area.knockback_vector * stats.knockback_distance
 		hurtbox.start_invincibility(0.5)
 		hurtbox.create_hit_effect()
 		var damageSound = DamageSound.instantiate()
@@ -239,6 +241,15 @@ func roll_state(delta):
 func roll_animation_finished():
 	state = State.MOVING
 	
+func die():
+	await get_tree().create_timer(0.25).timeout
+	create_death_effect()
+	queue_free()
+		
+func create_death_effect():
+		var deathEffect = DeathEffect.instantiate()
+		get_parent().add_child(deathEffect)
+		deathEffect.global_position = self.global_position
 		
 ##❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆
 ##❅❆❅	Usable Actor Commands

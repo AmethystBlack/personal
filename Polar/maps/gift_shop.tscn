@@ -39,67 +39,55 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAE
 
 [node name="Allia" parent="ObjectPlane/Actors" index="0" instance=ExtResource("2_b6qbh")]
 position = Vector2(345, 131)
-collision_layer = 3
 collision_mask = 1
 defaultFacing = 1
 
 [node name="Aurisch" parent="ObjectPlane/Actors" index="1" instance=ExtResource("3_k5hpl")]
 position = Vector2(90, 171)
-collision_layer = 3
 collision_mask = 1
 defaultFacing = 1
 
 [node name="Brite" parent="ObjectPlane/Actors" index="2" instance=ExtResource("4_vvdiq")]
 position = Vector2(357, 267)
-collision_layer = 3
 collision_mask = 1
 defaultFacing = 2
 
 [node name="Evristt" parent="ObjectPlane/Actors" index="3" instance=ExtResource("5_k307a")]
 position = Vector2(241, 303)
-collision_layer = 3
-collision_mask = 1
 defaultFacing = 3
 
-[node name="PlayerControl" parent="ObjectPlane/Actors/Evristt" index="14" instance=ExtResource("7_hodsc")]
+[node name="PlayerControl" parent="ObjectPlane/Actors/Evristt" index="7" instance=ExtResource("7_hodsc")]
 
 [node name="Flaw" parent="ObjectPlane/Actors" index="4" instance=ExtResource("6_d30u8")]
 position = Vector2(290, 185)
-collision_layer = 3
 collision_mask = 1
 defaultFacing = 1
 
 [node name="Jadd" parent="ObjectPlane/Actors" index="5" instance=ExtResource("7_igjdv")]
 position = Vector2(352, 219)
-collision_layer = 3
 collision_mask = 1
 defaultFacing = 1
 
 [node name="Kie" parent="ObjectPlane/Actors" index="6" instance=ExtResource("8_s2usi")]
 position = Vector2(183, 229)
-collision_layer = 3
 collision_mask = 1
 defaultFacing = 2
 
 [node name="Lee" parent="ObjectPlane/Actors" index="7" instance=ExtResource("9_ybnlt")]
 position = Vector2(74, 167)
-collision_layer = 3
 collision_mask = 1
 
 [node name="Maerunn" parent="ObjectPlane/Actors" index="8" instance=ExtResource("10_bs5iq")]
 position = Vector2(73, 183)
-collision_layer = 3
 collision_mask = 1
 defaultFacing = 3
 
 [node name="Maudritt" parent="ObjectPlane/Actors" index="9" instance=ExtResource("11_4ibsm")]
 position = Vector2(223, 110)
-collision_layer = 3
 collision_mask = 1
 
 [node name="North" parent="ObjectPlane/Actors" index="10" instance=ExtResource("12_v8oo1")]
 position = Vector2(267, 140)
-collision_layer = 3
 collision_mask = 1
 
 [node name="Resource" parent="ObjectPlane/Interactables" index="0" instance=ExtResource("14_qbfm8")]

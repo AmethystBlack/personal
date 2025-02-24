@@ -1,14 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://d22gas8sw638x"]
+[gd_scene load_steps=6 format=3 uid="uid://d22gas8sw638x"]
 
 [ext_resource type="PackedScene" uid="uid://da24yl2y8xbyy" path="res://character/actor.tscn" id="1_b35kn"]
 [ext_resource type="Script" path="res://character/PolarNPC/polar_npc.gd" id="2_287mb"]
 [ext_resource type="Texture2D" uid="uid://chs2ost1jw1mb" path="res://character/PolarNPC/Allia/allia.png" id="3_ok8k0"]
+[ext_resource type="Shader" path="res://WhiteColor.gdshader" id="4_cv6fy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bh182"]
+resource_local_to_scene = true
+shader = ExtResource("4_cv6fy")
+shader_parameter/active = false
 
 [node name="Actor" instance=ExtResource("1_b35kn")]
 script = ExtResource("2_287mb")
 skin = ExtResource("3_ok8k0")
 
 [node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_bh182")
 texture = ExtResource("3_ok8k0")
 offset = Vector2(-8, -21)
 

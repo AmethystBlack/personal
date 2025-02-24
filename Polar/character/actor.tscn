@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cbhmwimui3knc" path="res://Overlap/soft_collision.tscn" id="10_k7a2a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gacvx"]
+resource_local_to_scene = true
 shader = ExtResource("3_7le1c")
 shader_parameter/active = false
 
@@ -532,7 +533,7 @@ radius = 7.0
 height = 20.0
 
 [node name="Actor" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 3
 collision_mask = 0
 script = ExtResource("1_rvb4x")
 skin = ExtResource("2_c7p8k")
@@ -550,7 +551,6 @@ position = Vector2(0, -1)
 texture = ExtResource("3_nvl4u")
 
 [node name="PhysicalCollision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -2)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_hcbah")
@@ -566,11 +566,9 @@ debug_enabled = true
 [node name="Hurtbox" parent="PhysicalCollision" instance=ExtResource("9_b1ox4")]
 position = Vector2(-2, -7.23998e-06)
 rotation = 1.5708
-collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="PhysicalCollision/Hurtbox" index="0"]
-visible = false
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_4wpnt")
 
@@ -614,6 +612,7 @@ collision_mask = 8
 script = null
 
 [node name="CollisionShape2D" parent="HitboxPivot/InteractRange" index="0"]
+visible = false
 position = Vector2(-7, 6.99997)
 shape = SubResource("CapsuleShape2D_mn2o2")
 disabled = true
@@ -633,6 +632,7 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractReceiver"]
+visible = false
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_td4ak")
 
