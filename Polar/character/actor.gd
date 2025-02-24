@@ -49,7 +49,6 @@ var moveVector : Vector2 = Vector2.ZERO :
 
 func updateVectorAnims(moveVector):
 	if moveVector != Vector2.ZERO:
-		attackHitbox.knockback_vector = moveVector
 		updateFacing(moveVector)
 		animationState.travel("Run")
 
@@ -113,9 +112,11 @@ func _on_interaction_mouse_exited() -> void:
 	mousedOver = false
 	
 func _on_hurtbox_invincibility_ended():
+	animationTree.active = true
 	blinkAnimationPlayer.play("Stop")
 
 func _on_hurtbox_invincibility_started():
+	animationTree.active = false
 	blinkAnimationPlayer.play("Start")
 
 func _on_hurtbox_area_entered(area):
@@ -212,7 +213,9 @@ func getAcceleration(delta):
 func takeDamage(area):
 	if hurtbox.invincible == false:
 		stats.health -= area.damage
-		velocity = area.knockback_vector * stats.knockback_distance
+		velocity = area.knockback_vector.normalized() * stats.knockback_distance
+		print(area.knockback_vector)
+		print(velocity)
 		hurtbox.start_invincibility(0.5)
 		hurtbox.create_hit_effect()
 		var damageSound = DamageSound.instantiate()
@@ -292,7 +295,3 @@ func moveTo(x,y):
 	state = State.PATH
 	animationState.travel("Run")
 	await finishedPathing
-
-#
-#func _on_interact_range_area_entered(area: Area2D) -> void:
-	#pass # Replace with function body.
