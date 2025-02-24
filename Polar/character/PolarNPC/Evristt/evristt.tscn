@@ -27,6 +27,9 @@ collision_layer = 2
 visible = false
 disabled = true
 
+[node name="AnimationTree" parent="AnimationPlayer" index="0"]
+parameters/Roll/blend_position = Vector2(0, 1)
+
 [node name="CollisionShape2D" parent="HitboxPivot/InteractRange" index="0"]
 visible = true
 

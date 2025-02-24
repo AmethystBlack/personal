@@ -40,9 +40,9 @@ func otherInputs():
 	if Input.is_action_just_pressed("attack"):
 		actor_attacks.emit()
 		player.state = player.State.ATTACK
-	elif Input.is_action_just_pressed("roll"):
+	elif Input.is_action_just_pressed("dodge"):
 		actor_dodges.emit()
-		player.state = player.State.ROLL
+		player.state = player.State.DODGE
 	elif Input.is_action_just_pressed("misc"):
 		actor_misc.emit()
 		process_misc()

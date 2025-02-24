@@ -24,7 +24,7 @@ enum State {
 	IDLE,
 	MOVING,
 	PATH,
-	ROLL,
+	DODGE,
 	ATTACK
 }
 var state = State.IDLE
@@ -94,8 +94,8 @@ func _physics_process(delta):
 	match state:
 		State.MOVING:
 			move_state(delta)
-		State.ROLL: 
-			roll_state(delta)
+		State.DODGE: 
+			dodge_state(delta)
 		State.ATTACK: 
 			attack_state(delta)
 		State.PATH:
@@ -233,15 +233,15 @@ func attack_state(delta):
 func attack_animation_finished():
 	state = State.MOVING
 	
-func roll_state(delta):
-	var minimumRoll = moveVector * (stats.roll_speed)
+func dodge_state(delta):
+	var minimumRoll = moveVector * (stats.dodge_speed)
 	if (velocity.x**2) < (minimumRoll.x**2) || (velocity.y**2) < (minimumRoll.y**2):
 		velocity = minimumRoll
 	move_and_slide()
 	animationState.travel("Roll")
 	
 	
-func roll_animation_finished():
+func dodge_animation_finished():
 	state = State.MOVING
 	
 func die():
