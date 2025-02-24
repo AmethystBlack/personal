@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dv4cnppkqkhks"]
+[gd_scene load_steps=5 format=3 uid="uid://dv4cnppkqkhks"]
 
 [ext_resource type="PackedScene" uid="uid://d22gas8sw638x" path="res://character/PolarNPC/polarNPC.tscn" id="1_x42jb"]
 [ext_resource type="Texture2D" uid="uid://bf767kmedhlw8" path="res://character/PolarNPC/Evristt/evristt.png" id="2_yrk7i"]
+[ext_resource type="Shader" path="res://WhiteColor.gdshader" id="3_rdkrl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eu3ny"]
+shader = ExtResource("3_rdkrl")
+shader_parameter/active = false
 
 [node name="Evristt" instance=ExtResource("1_x42jb")]
 collision_layer = 3
@@ -9,6 +14,7 @@ collision_mask = 1
 skin = ExtResource("2_yrk7i")
 
 [node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_eu3ny")
 texture = ExtResource("2_yrk7i")
 offset = Vector2(-24, -48)
 

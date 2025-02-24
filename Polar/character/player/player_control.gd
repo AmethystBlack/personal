@@ -13,7 +13,6 @@ func _ready() -> void:
 	player.state = player.State.MOVING
 	await player.ready
 	player.interactReceiver.area_entered.connect(_on_interact_range_area_entered)
-	print("A cmon")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -58,11 +57,7 @@ func interact():
 	await get_tree().create_timer(0.1).timeout
 	player.interactHitbox.disabled = true
 
-func _on_interact_range_area_entered(area: Area2D) -> void:
-	print(area)
-	#if area.get_parent() == self:
-		#return
-		
+func _on_interact_range_area_entered(area: Area2D) -> void:		
 	var foundNode = area.get_parent()
 	if foundNode.has_method("interact"):
 		foundNode.interact(player)

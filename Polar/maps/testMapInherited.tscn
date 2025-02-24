@@ -46,7 +46,7 @@ skin = ExtResource("3_kmkwg")
 [node name="Evristt" parent="ObjectPlane/Actors" index="0" instance=ExtResource("4_iyq5f")]
 position = Vector2(200, 161)
 
-[node name="PlayerControl" parent="ObjectPlane/Actors/Evristt" index="13" instance=ExtResource("5_jltbx")]
+[node name="PlayerControl" parent="ObjectPlane/Actors/Evristt" index="7" instance=ExtResource("5_jltbx")]
 
 [node name="TopLeft" parent="Limits" index="0"]
 position = Vector2(2, -28)

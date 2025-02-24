@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://tcsbc4yi3fm7" path="res://character/Stats.tscn" id="9_n3prt"]
 [ext_resource type="PackedScene" uid="uid://cbhmwimui3knc" path="res://Overlap/soft_collision.tscn" id="10_k7a2a"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eu3ny"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gacvx"]
 shader = ExtResource("3_7le1c")
 shader_parameter/active = false
 
@@ -538,7 +538,7 @@ script = ExtResource("1_rvb4x")
 skin = ExtResource("2_c7p8k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_eu3ny")
+material = SubResource("ShaderMaterial_gacvx")
 texture = ExtResource("2_c7p8k")
 centered = false
 offset = Vector2(-8, -20)

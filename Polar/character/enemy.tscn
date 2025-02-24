@@ -1,14 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://kugrr4otlc72"]
+[gd_scene load_steps=6 format=3 uid="uid://kugrr4otlc72"]
 
 [ext_resource type="PackedScene" uid="uid://da24yl2y8xbyy" path="res://character/actor.tscn" id="1_qu7fj"]
 [ext_resource type="Script" path="res://character/enemy.gd" id="2_ivsh4"]
-[ext_resource type="Shader" path="res://WhiteColor.gdshader" id="3_d8lj2"]
 [ext_resource type="PackedScene" uid="uid://bkccr22ecvuwk" path="res://character/Enemies/wander_controller.tscn" id="4_r1xl5"]
 [ext_resource type="PackedScene" uid="uid://vvpspuh22nl5" path="res://character/Enemies/player_detection_zone.tscn" id="5_wjjoc"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1law7"]
-shader = ExtResource("3_d8lj2")
-shader_parameter/active = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x2226"]
 radius = 88.2043
@@ -18,14 +13,8 @@ collision_layer = 1
 script = ExtResource("2_ivsh4")
 skin = null
 
-[node name="Sprite2D" parent="." index="0"]
-material = SubResource("ShaderMaterial_1law7")
-
 [node name="Stats" parent="." index="4"]
 max_health = 3
-
-[node name="Interaction" parent="." index="6"]
-collision_layer = 0
 
 [node name="WanderController" parent="." index="7" instance=ExtResource("4_r1xl5")]
 
