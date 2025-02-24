@@ -12,6 +12,7 @@ class_name Actor
 @onready var animationTree = $AnimationPlayer/AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var hurtbox = $PhysicalCollision/Hurtbox
+@onready var hurtboxCollision = $PhysicalCollision/Hurtbox/CollisionShape2D
 @onready var softCollision = $SoftCollision
 @onready var navigation_agent = $PhysicalCollision/NavigationAgent2D
 @onready var hitbox_pivot = $HitboxPivot
@@ -127,14 +128,18 @@ func _on_hurtbox_area_entered(area):
 ##❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆
 
 func updateFacing(vector2):
-	if not Engine.is_editor_hint():
-		animationTree.set("parameters/Idle/blend_position",vector2)
-		animationTree.set("parameters/Run/blend_position",vector2)
-		animationTree.set("parameters/Attack/blend_position",vector2)
-		animationTree.set("parameters/Roll/blend_position",vector2)
-		attackHitbox.knockback_vector = vector2
-		hitbox_pivot.rotation = vector2.angle()
-		facingVector = vector2
+	if Engine.is_editor_hint():
+		return
+	if state == State.DODGE:
+		return
+		
+	animationTree.set("parameters/Idle/blend_position",vector2)
+	animationTree.set("parameters/Run/blend_position",vector2)
+	animationTree.set("parameters/Attack/blend_position",vector2)
+	animationTree.set("parameters/Dodge/blend_position",vector2)
+	attackHitbox.knockback_vector = vector2
+	hitbox_pivot.rotation = vector2.angle()
+	facingVector = vector2.normalized()
 	
 func faceReserved():
 	if reservedFacing != Vector2.ZERO:
@@ -150,6 +155,8 @@ func updateDefaultFacing():
 			faceRight()
 		DIRECTIONS.UP:
 			faceUp()
+			
+
 			
 ##❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆
 ##❅❆❅	Movement functions
@@ -214,8 +221,6 @@ func takeDamage(area):
 	if hurtbox.invincible == false:
 		stats.health -= area.damage
 		velocity = area.knockback_vector.normalized() * stats.knockback_distance
-		print(area.knockback_vector)
-		print(velocity)
 		hurtbox.start_invincibility(0.5)
 		hurtbox.create_hit_effect()
 		var damageSound = DamageSound.instantiate()
@@ -234,11 +239,19 @@ func attack_animation_finished():
 	state = State.MOVING
 	
 func dodge_state(delta):
-	var minimumRoll = moveVector * (stats.dodge_speed)
-	if (velocity.x**2) < (minimumRoll.x**2) || (velocity.y**2) < (minimumRoll.y**2):
-		velocity = minimumRoll
+	var dodgeVector = moveVector
+	if moveVector == Vector2.ZERO:
+		dodgeVector = facingVector * -1
+	var dodgeVelocity = dodgeVector * (stats.dodge_speed)
+	velocity = dodgeVelocity
 	move_and_slide()
-	animationState.travel("Roll")
+	animationState.travel("Dodge")
+	#hurtboxCollision.disabled = true
+	await h.wait(0.5)
+	state = State.MOVING
+	animationState.travel("Idle")
+	#hurtboxCollision.disabled = false
+	
 	
 	
 func dodge_animation_finished():

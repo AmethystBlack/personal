@@ -15,9 +15,13 @@ skin = ExtResource("2_vsvjc")
 material = SubResource("ShaderMaterial_eu3ny")
 texture = ExtResource("2_vsvjc")
 offset = Vector2(-8, -24)
+frame = 0
 
 [node name="CollisionShape2D" parent="PhysicalCollision/Hurtbox" index="0"]
 disabled = true
+
+[node name="AnimationTree" parent="AnimationPlayer" index="0"]
+parameters/Dodge/blend_position = Vector2(0.161233, 0.375449)
 
 [node name="Stats" parent="." index="4"]
 initiative = 80

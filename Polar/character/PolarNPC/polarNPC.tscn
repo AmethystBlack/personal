@@ -19,6 +19,9 @@ material = SubResource("ShaderMaterial_bh182")
 texture = ExtResource("3_ok8k0")
 offset = Vector2(-8, -21)
 
+[node name="AnimationTree" parent="AnimationPlayer" index="0"]
+parameters/Dodge/blend_position = Vector2(0.161233, 0.375449)
+
 [editable path="PhysicalCollision/Hurtbox"]
 [editable path="HitboxPivot/AttackHitbox"]
 [editable path="HitboxPivot/InteractRange"]

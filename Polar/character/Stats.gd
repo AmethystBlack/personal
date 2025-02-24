@@ -17,7 +17,7 @@ signal max_health_changed(value)
 
 @export var acceleration: int = 30
 @export var max_speed: int = 60
-@export var dodge_speed: int = 80
+@export var dodge_speed: int = 150
 @export var friction: int = 1400
 @export var knockback_friction: int = 400
 @export var knockback_distance: int = 450

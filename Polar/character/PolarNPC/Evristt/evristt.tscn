@@ -16,6 +16,7 @@ skin = ExtResource("2_yrk7i")
 material = SubResource("ShaderMaterial_eu3ny")
 texture = ExtResource("2_yrk7i")
 offset = Vector2(-24, -48)
+frame = 0
 
 [node name="PhysicalCollision" parent="." index="1"]
 visible = false
@@ -28,7 +29,7 @@ visible = false
 disabled = true
 
 [node name="AnimationTree" parent="AnimationPlayer" index="0"]
-parameters/Roll/blend_position = Vector2(0, 1)
+parameters/Dodge/blend_position = Vector2(0, 1)
 
 [node name="CollisionShape2D" parent="HitboxPivot/InteractRange" index="0"]
 visible = true

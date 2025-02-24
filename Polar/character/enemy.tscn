@@ -22,6 +22,9 @@ skin = null
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_j4apx")
 
+[node name="AnimationTree" parent="AnimationPlayer" index="0"]
+parameters/Dodge/blend_position = Vector2(0.161233, 0.375449)
+
 [node name="Stats" parent="." index="4"]
 max_health = 3
 

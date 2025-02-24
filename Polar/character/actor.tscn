@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://da24yl2y8xbyy"]
+[gd_scene load_steps=65 format=3 uid="uid://da24yl2y8xbyy"]
 
 [ext_resource type="Script" path="res://character/actor.gd" id="1_rvb4x"]
 [ext_resource type="Texture2D" uid="uid://160kmimkw6yj" path="res://character/trchar025.png" id="2_c7p8k"]
@@ -368,12 +368,128 @@ tracks/0/keys = {
 "values": [12, 13, 14, 15]
 }
 
+[sub_resource type="Animation" id="Animation_q0l3m"]
+resource_name = "DodgeLeft"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_t3hgf"]
+resource_name = "DodgeUp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_e6k2y"]
+resource_name = "DodgeRight"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_k8o51"]
+resource_name = "DodgeDown"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ayke2"]
 _data = {
 "AttackDown": SubResource("Animation_j4cno"),
 "AttackLeft": SubResource("Animation_jpfw5"),
 "AttackRight": SubResource("Animation_erkbb"),
 "AttackUp": SubResource("Animation_rgije"),
+"DodgeDown": SubResource("Animation_k8o51"),
+"DodgeLeft": SubResource("Animation_q0l3m"),
+"DodgeRight": SubResource("Animation_e6k2y"),
+"DodgeUp": SubResource("Animation_t3hgf"),
 "IdleDown": SubResource("Animation_lkf08"),
 "IdleLeft": SubResource("Animation_n8v8i"),
 "IdleRight": SubResource("Animation_b3mmc"),
@@ -410,6 +526,31 @@ min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0fv6l"]
+animation = &"DodgeLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0yab8"]
+animation = &"DodgeDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_28ky6"]
+animation = &"DodgeRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j62cd"]
+animation = &"DodgeUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ku0m6"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_0fv6l")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_0yab8")
+blend_point_1/pos = Vector2(0, 1.1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_28ky6")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_j62cd")
+blend_point_3/pos = Vector2(0, -1.1)
+min_space = Vector2(-1, -1.1)
+max_space = Vector2(1, 1.1)
+blend_mode = 1
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_exjty"]
 animation = &"IdleLeft"
 
@@ -431,31 +572,6 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_gbvob")
 blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_cta55")
 blend_point_3/pos = Vector2(0, -1)
-min_space = Vector2(-1, -1.1)
-max_space = Vector2(1, 1.1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0fv6l"]
-animation = &"RollLeft"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0yab8"]
-animation = &"RollDown"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_28ky6"]
-animation = &"RollRight"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j62cd"]
-animation = &"RollUp"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ku0m6"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_0fv6l")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_0yab8")
-blend_point_1/pos = Vector2(0, 1.1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_28ky6")
-blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_j62cd")
-blend_point_3/pos = Vector2(0, -1.1)
 min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 blend_mode = 1
@@ -512,14 +628,14 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0yf2i"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_15edo")
 states/Attack/position = Vector2(569, -19.5351)
+states/Dodge/node = SubResource("AnimationNodeBlendSpace2D_ku0m6")
+states/Dodge/position = Vector2(721, 11.1297)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_yjpf8")
 states/Idle/position = Vector2(569, 56)
-states/Roll/node = SubResource("AnimationNodeBlendSpace2D_ku0m6")
-states/Roll/position = Vector2(721, 11.1297)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_xnun3")
 states/Run/position = Vector2(569, 131)
 states/Start/position = Vector2(158, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0uaq8"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_t6tws"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_rpsed"), "Idle", "End", SubResource("AnimationNodeStateMachineTransition_nil6d"), "Run", "End", SubResource("AnimationNodeStateMachineTransition_s1xy6"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_7nwp4"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_2t1xx"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_t0jao"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_injv7")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0uaq8"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_t6tws"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_rpsed"), "Idle", "End", SubResource("AnimationNodeStateMachineTransition_nil6d"), "Run", "End", SubResource("AnimationNodeStateMachineTransition_s1xy6"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_7nwp4"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_2t1xx"), "Idle", "Dodge", SubResource("AnimationNodeStateMachineTransition_t0jao"), "Dodge", "Idle", SubResource("AnimationNodeStateMachineTransition_injv7")]
 graph_offset = Vector2(6, -45.8703)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mn2o2"]
@@ -545,6 +661,7 @@ centered = false
 offset = Vector2(-8, -20)
 hframes = 4
 vframes = 4
+frame = 1
 
 [node name="ShadowSprite" type="Sprite2D" parent="Sprite2D"]
 position = Vector2(0, -1)
@@ -583,8 +700,8 @@ root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_0yf2i")
 anim_player = NodePath("..")
 parameters/Attack/blend_position = Vector2(-0.000881076, -1.08683)
+parameters/Dodge/blend_position = Vector2(-0.961798, -0.0128906)
 parameters/Idle/blend_position = Vector2(0, 1)
-parameters/Roll/blend_position = Vector2(0.161233, 0.375449)
 parameters/Run/blend_position = Vector2(0, 1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationPlayer"]
