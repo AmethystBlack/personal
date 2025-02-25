@@ -26,7 +26,6 @@ collision_layer = 2
 
 [node name="CollisionShape2D" parent="PhysicalCollision/Hurtbox" index="0"]
 visible = false
-disabled = true
 
 [node name="AnimationTree" parent="AnimationPlayer" index="0"]
 parameters/Dodge/blend_position = Vector2(0, 1)

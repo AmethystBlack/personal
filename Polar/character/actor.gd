@@ -218,14 +218,18 @@ func getAcceleration(delta):
 ##❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆❆❅❆❅❆
 
 func takeDamage(area):
-	if hurtbox.invincible == false:
-		stats.health -= area.damage
-		velocity = area.knockback_vector.normalized() * stats.knockback_distance
-		hurtbox.start_invincibility(0.5)
-		hurtbox.create_hit_effect()
-		var damageSound = DamageSound.instantiate()
-		get_tree().current_scene.add_child(damageSound)
-			
+	if hurtbox.invincible == true:
+		return
+	if area.get_parent().get_parent() == self:
+		return	
+	
+	stats.health -= area.damage
+	velocity = area.knockback_vector.normalized() * stats.knockback_distance
+	hurtbox.start_invincibility(0.5)
+	hurtbox.create_hit_effect()
+	var damageSound = DamageSound.instantiate()
+	get_tree().current_scene.add_child(damageSound)
+		
 func interactedWith(speaker):
 	reservedFacing = facingVector
 	faceCharacter(speaker)
@@ -235,7 +239,7 @@ func attack_state(delta):
 	move_and_slide()
 	animationState.travel("Attack")
 	
-func attack_animation_finished():
+func attack_animation_finished(): # signaled by animation player
 	state = State.MOVING
 	
 func dodge_state(delta):
@@ -246,11 +250,11 @@ func dodge_state(delta):
 	velocity = dodgeVelocity
 	move_and_slide()
 	animationState.travel("Dodge")
-	#hurtboxCollision.disabled = true
+	hurtboxCollision.disabled = true
 	await h.wait(0.5)
 	state = State.MOVING
 	animationState.travel("Idle")
-	#hurtboxCollision.disabled = false
+	hurtboxCollision.disabled = false
 	
 	
 	
