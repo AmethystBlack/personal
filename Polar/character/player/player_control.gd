@@ -16,12 +16,13 @@ func _ready() -> void:
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if h.HUD == null:
 		return
 	if h.gameState != h.game.SCENE:
 		player.moveVector = getInputVector()
 		otherInputs()
+		updateMoveState()
 
 func getInputVector():
 	var input_vector = Vector2.ZERO
@@ -63,3 +64,9 @@ func _on_interact_range_area_entered(area: Area2D) -> void:
 		foundNode.interact(player)
 	else:
 		h.map.interact(foundNode.name,player)
+
+func updateMoveState():
+	if Input.is_action_pressed("run"):
+		player.moveState = player.Move.RUN
+	else:
+		player.moveState = player.Move.WALK

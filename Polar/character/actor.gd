@@ -30,6 +30,13 @@ enum State {
 }
 var state = State.IDLE
 
+enum Move {
+	WALK,
+	RUN,
+	SNEAK
+}
+var moveState = Move.WALK
+
 const DamageSound = preload("res://character/player/player_hurt_sound.tscn")
 const DeathEffect = preload("res://Effects/enemy_death_effect.tscn")
 
@@ -196,9 +203,13 @@ func path_state(delta):
 	move_and_slide()
 	
 func getVelocity(direction, delta):
+	var speed = stats.max_speed
 	var acceleration = getAcceleration(delta)
-	var velo = direction * stats.max_speed
-	var velo2 = velocity.move_toward(direction * stats.max_speed, acceleration)
+	if moveState == Move.RUN:
+		speed *= stats.run_multiplier
+		acceleration *= stats.run_multiplier
+	var velo = direction * speed
+	var velo2 = velocity.move_toward(direction * speed, acceleration)
 	
 	# jank reduction act of 2025
 	if abs(velo2.x) > abs(velo.x):

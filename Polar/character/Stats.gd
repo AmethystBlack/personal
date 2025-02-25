@@ -21,6 +21,7 @@ signal max_health_changed(value)
 @export var friction: int = 1400
 @export var knockback_friction: int = 400
 @export var knockback_distance: int = 450
+@export var run_multiplier: float = 2.5
 
 @export var initiative = 50
 
